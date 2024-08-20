@@ -14,7 +14,6 @@
 		B30D67052C73C5890053144B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B30D67042C73C5890053144B /* Assets.xcassets */; };
 		B30D67082C73C5890053144B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B30D67062C73C5890053144B /* LaunchScreen.storyboard */; };
 		B30D67152C73C6510053144B /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B30D67142C73C6510053144B /* Alamofire */; };
-		B30D67172C73C6510053144B /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = B30D67162C73C6510053144B /* AlamofireDynamic */; };
 		B30D671A2C73C6640053144B /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B30D67192C73C6640053144B /* GoogleSignIn */; };
 		B30D671C2C73C6640053144B /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B30D671B2C73C6640053144B /* GoogleSignInSwift */; };
 		B30D671F2C73C6BB0053144B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B30D671E2C73C6BB0053144B /* FirebaseAnalytics */; };
@@ -26,6 +25,8 @@
 		B30D672B2C73C81E0053144B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30D672A2C73C81E0053144B /* HomeView.swift */; };
 		B30D672E2C73C8640053144B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30D672D2C73C8640053144B /* APIManager.swift */; };
 		B30D67312C73C90C0053144B /* GoogleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30D67302C73C90C0053144B /* GoogleService.swift */; };
+		B37239602C74D65F00EE8241 /* SanityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B372395F2C74D65F00EE8241 /* SanityService.swift */; };
+		B37239642C74F01D00EE8241 /* AllProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37239632C74F01D00EE8241 /* AllProperty.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,8 @@
 		B30D672A2C73C81E0053144B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B30D672D2C73C8640053144B /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		B30D67302C73C90C0053144B /* GoogleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleService.swift; sourceTree = "<group>"; };
+		B372395F2C74D65F00EE8241 /* SanityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanityService.swift; sourceTree = "<group>"; };
+		B37239632C74F01D00EE8241 /* AllProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProperty.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +54,6 @@
 				B30D67252C73C6BB0053144B /* FirebaseAppCheck in Frameworks */,
 				B30D67152C73C6510053144B /* Alamofire in Frameworks */,
 				B30D67212C73C6BB0053144B /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
-				B30D67172C73C6510053144B /* AlamofireDynamic in Frameworks */,
 				B30D671A2C73C6640053144B /* GoogleSignIn in Frameworks */,
 				B30D67232C73C6BB0053144B /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B30D671F2C73C6BB0053144B /* FirebaseAnalytics in Frameworks */,
@@ -82,6 +84,7 @@
 		B30D66FA2C73C5860053144B /* MY Property */ = {
 			isa = PBXGroup;
 			children = (
+				B37239622C74EFBD00EE8241 /* NetworkUseCases */,
 				B30D672F2C73C8FF0053144B /* Service */,
 				B30D672C2C73C8460053144B /* Manager */,
 				B30D67122C73C5D30053144B /* Delegate */,
@@ -141,8 +144,17 @@
 			isa = PBXGroup;
 			children = (
 				B30D67302C73C90C0053144B /* GoogleService.swift */,
+				B372395F2C74D65F00EE8241 /* SanityService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		B37239622C74EFBD00EE8241 /* NetworkUseCases */ = {
+			isa = PBXGroup;
+			children = (
+				B37239632C74F01D00EE8241 /* AllProperty.swift */,
+			);
+			path = NetworkUseCases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,7 +175,6 @@
 			name = "MY Property";
 			packageProductDependencies = (
 				B30D67142C73C6510053144B /* Alamofire */,
-				B30D67162C73C6510053144B /* AlamofireDynamic */,
 				B30D67192C73C6640053144B /* GoogleSignIn */,
 				B30D671B2C73C6640053144B /* GoogleSignInSwift */,
 				B30D671E2C73C6BB0053144B /* FirebaseAnalytics */,
@@ -239,6 +250,8 @@
 				B30D66FC2C73C5860053144B /* AppDelegate.swift in Sources */,
 				B30D672B2C73C81E0053144B /* HomeView.swift in Sources */,
 				B30D66FE2C73C5860053144B /* SceneDelegate.swift in Sources */,
+				B37239602C74D65F00EE8241 /* SanityService.swift in Sources */,
+				B37239642C74F01D00EE8241 /* AllProperty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,11 +507,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B30D67132C73C6510053144B /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		B30D67162C73C6510053144B /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B30D67132C73C6510053144B /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 		B30D67192C73C6640053144B /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
