@@ -15,6 +15,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        GetProperty()
+    }
+    
+    private func GetProperty() {
         sanityService.fetchAllProperties { result in
             switch result {
             case .success(let properties):
