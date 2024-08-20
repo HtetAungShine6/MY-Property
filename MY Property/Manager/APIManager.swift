@@ -26,17 +26,15 @@ extension APIManager {
     func execute(with query: String, completion: @escaping(Result<ModelType, Error>) -> Void) {
         let urlString = "\(url)?query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
         
-        AF.request(urlString)
-            .validate(statusCode: 200..<300)
-            .responseDecodable(of: ModelType.self) { response in
-                switch response.result {
-                case .success(let data):
-                    completion(.success(data))
-                    print("Successfully fetched data: \(data)")
-                case .failure(let error):
-                    completion(.failure(error))
-                    print("Request error: \(error)")
-                }
+        AF.request(urlString).validate(statusCode: 200..<300).responseDecodable(of: ModelType.self) { response in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+                print("Successfully fetched data: \(data)")
+            case .failure(let error):
+                completion(.failure(error))
+                print("Request error: \(error)")
             }
+        }
     }
 }

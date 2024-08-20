@@ -17,7 +17,9 @@ class ViewController: UIViewController {
         
         GetProperty()
     }
-    
+}
+
+extension ViewController {
     private func GetProperty() {
         sanityService.fetchAllProperties { result in
             switch result {
@@ -31,4 +33,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
