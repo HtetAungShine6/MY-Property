@@ -33,7 +33,7 @@ class GoogleService {
                     print("Error: \(error.localizedDescription)")
                 }
                 
-                guard let authResult = authResult else {
+                guard let _ = authResult else {
                     print("Firebase Auth Error")
                     return
                 }

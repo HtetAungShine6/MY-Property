@@ -13,10 +13,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     private let googleService = GoogleService()
     private let sanityService = SanityService()
-    let homeView = HomeView()
     private var properties: [Property] = []
     private var filteredProperties: [Property] = []
     private var isSearching = false
+    
+    let homeView = HomeView()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,11 +53,11 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let profileImageView = UIImageView()
         profileImageView.contentMode = .scaleAspectFill
-        profileImageView.layer.cornerRadius = 20
+        profileImageView.layer.cornerRadius = 15
         profileImageView.clipsToBounds = true
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        profileImageView.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        profileImageView.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         if let photoURL = Auth.auth().currentUser?.photoURL {
             DispatchQueue.global().async {
@@ -94,12 +95,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return properties.count
+//        return properties.count
+        return isSearching ? filteredProperties.count : properties.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PropertyCell", for: indexPath) as! PropertyCollectionViewCell
-        let property = properties[indexPath.item]
+        let property = isSearching ? filteredProperties[indexPath.item] : properties[indexPath.item]
         cell.configure(with: property)
         return cell
     }
@@ -112,15 +114,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedProperty: Property
         if isSearching {
-            let selectedDish = filteredProperties[indexPath.item]
-            print("\(selectedDish.title)")
+            selectedProperty = filteredProperties[indexPath.item]
         } else {
-            let selectedDish = properties[indexPath.item]
-            print("\(selectedDish.title)")
+            selectedProperty = properties[indexPath.item]
         }
-//        dishDetailViewController.dish = selectedDish
-//        navigationController?.pushViewController(dishDetailViewController, animated: true)
+        
+        print("Selected Property: \(selectedProperty.title)")
     }
     
     
@@ -130,13 +131,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            isSearching = false
-            filteredProperties.removeAll()
-        } else {
-            isSearching = true
-            filteredProperties = properties.filter { $0.title.lowercased().contains(searchText.lowercased()) }
-        }
+        //        if searchText.isEmpty {
+        //            isSearching = false
+        //            filteredProperties.removeAll()
+        //        } else {
+        //            isSearching = true
+        //            filteredProperties = properties.filter { $0.title.lowercased().contains(searchText.lowercased()) }
+        //        }
+        //        homeView.propertyCollectionView.reloadData()
+        filteredProperties = searchText.isEmpty ? properties : properties.filter { $0.title.range(of: searchText, options: .caseInsensitive) != nil }
+        isSearching = !filteredProperties.isEmpty
         homeView.propertyCollectionView.reloadData()
     }
     

@@ -23,7 +23,7 @@ struct Property: Codable {
     let minPrice: Double
     let maxPrice: Double
     let propertyHero: ImageAsset
-    let photos: [ImageAsset]
+    let photos: [ImageAsset]?
     let facilities: [Facility]
 
     struct Slug: Codable {
@@ -42,6 +42,6 @@ struct Property: Codable {
         let facilityType: String
         let facilityName: String
         let description: String
-        let photos: [ImageAsset]
+        let photos: [ImageAsset]?
     }
 }
