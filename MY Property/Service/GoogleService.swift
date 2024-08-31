@@ -43,7 +43,19 @@ class GoogleService {
                 if let window = UIApplication.shared.connectedScenes
                     .compactMap({ $0 as? UIWindowScene })
                     .first?.windows.first {
-                    window.rootViewController = HomeViewController()
+                    
+                    // Set the TabBarController as the root view controller
+                    let tabBarController = UITabBarController()
+                    
+                    let homeVC = UINavigationController(rootViewController: HomeViewController())
+                    homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+                    
+                    let profileVC = UINavigationController(rootViewController: ProfileViewController())
+                    profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+                    
+                    tabBarController.viewControllers = [homeVC, profileVC]
+                    
+                    window.rootViewController = tabBarController
                     window.makeKeyAndVisible()
                 }
             }

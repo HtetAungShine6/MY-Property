@@ -22,11 +22,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         // Check if the user is signed in
-        let isUserSignedIn = UserDefaults.standard.bool(forKey: "AppState")
-        
-        if isUserSignedIn {
-            window?.rootViewController = HomeViewController()
+        if UserDefaults.standard.bool(forKey: "AppState") {
+            // User is signed in, show the TabBarController
+            let tabBarController = UITabBarController()
+            
+            // Home ViewController
+            let homeVC = UINavigationController(rootViewController: HomeViewController())
+            homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+            
+            // Profile ViewController (this is just an example, replace with your actual profile view controller)
+            let profileVC = UINavigationController(rootViewController: ProfileViewController())
+            profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+            
+            // Add all ViewControllers to the TabBar
+            tabBarController.viewControllers = [homeVC, profileVC]
+            
+            window?.rootViewController = tabBarController
         } else {
+            // User is not signed in, show the sign-in screen
             window?.rootViewController = ViewController()
         }
         

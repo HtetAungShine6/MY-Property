@@ -34,7 +34,7 @@ struct Property: Codable {
         let asset: AssetReference
 
         struct AssetReference: Codable {
-            let _ref: String
+            let _ref: String?
         }
     }
 

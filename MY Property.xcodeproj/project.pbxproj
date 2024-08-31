@@ -30,8 +30,12 @@
 		B317B9A52C7A2F6C001836EB /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9A42C7A2F6C001836EB /* FirebaseManager.swift */; };
 		B317B9A82C7B924C001836EB /* app_utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9A72C7B924C001836EB /* app_utility.swift */; };
 		B317B9AA2C7B97F6001836EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9A92C7B97F6001836EB /* HomeViewController.swift */; };
+		B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9AB2C7C2038001836EB /* LoginScreen.swift */; };
 		B37239602C74D65F00EE8241 /* SanityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B372395F2C74D65F00EE8241 /* SanityService.swift */; };
 		B37239642C74F01D00EE8241 /* AllProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37239632C74F01D00EE8241 /* AllProperty.swift */; };
+		B3D46F852C80D80900F44F6F /* PropertyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */; };
+		B3D46F882C80E6C700F44F6F /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F872C80E6C700F44F6F /* URLHelper.swift */; };
+		B3D46F8A2C80E96100F44F6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F892C80E96100F44F6F /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,8 +55,12 @@
 		B317B9A42C7A2F6C001836EB /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		B317B9A72C7B924C001836EB /* app_utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app_utility.swift; sourceTree = "<group>"; };
 		B317B9A92C7B97F6001836EB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B317B9AB2C7C2038001836EB /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		B372395F2C74D65F00EE8241 /* SanityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanityService.swift; sourceTree = "<group>"; };
 		B37239632C74F01D00EE8241 /* AllProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProperty.swift; sourceTree = "<group>"; };
+		B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCollectionViewCell.swift; sourceTree = "<group>"; };
+		B3D46F872C80E6C700F44F6F /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
+		B3D46F892C80E96100F44F6F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,8 @@
 		B30D66FA2C73C5860053144B /* MY Property */ = {
 			isa = PBXGroup;
 			children = (
+				B3D46F862C80E6B600F44F6F /* Helper */,
+				B31525402C80912200F6FBFF /* Cell */,
 				B317B9A62C7B9232001836EB /* Utility */,
 				B317B99B2C7A26C3001836EB /* GoogleService-Info.plist */,
 				B37239622C74EFBD00EE8241 /* NetworkUseCases */,
@@ -124,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				B30D672A2C73C81E0053144B /* HomeView.swift */,
+				B317B9AB2C7C2038001836EB /* LoginScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -133,6 +144,7 @@
 			children = (
 				B30D66FF2C73C5860053144B /* ViewController.swift */,
 				B317B9A92C7B97F6001836EB /* HomeViewController.swift */,
+				B3D46F892C80E96100F44F6F /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -164,6 +176,14 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		B31525402C80912200F6FBFF /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		B317B9A02C7A2EA8001836EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +205,14 @@
 				B37239632C74F01D00EE8241 /* AllProperty.swift */,
 			);
 			path = NetworkUseCases;
+			sourceTree = "<group>";
+		};
+		B3D46F862C80E6B600F44F6F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B3D46F872C80E6C700F44F6F /* URLHelper.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,13 +303,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3D46F882C80E6C700F44F6F /* URLHelper.swift in Sources */,
+				B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */,
 				B30D672E2C73C8640053144B /* APIManager.swift in Sources */,
 				B30D67002C73C5860053144B /* ViewController.swift in Sources */,
 				B30D67312C73C90C0053144B /* GoogleService.swift in Sources */,
 				B317B9A52C7A2F6C001836EB /* FirebaseManager.swift in Sources */,
+				B3D46F8A2C80E96100F44F6F /* ProfileViewController.swift in Sources */,
 				B317B9A82C7B924C001836EB /* app_utility.swift in Sources */,
 				B30D67292C73C7DF0053144B /* PropertyResponse.swift in Sources */,
 				B30D66FC2C73C5860053144B /* AppDelegate.swift in Sources */,
+				B3D46F852C80D80900F44F6F /* PropertyCollectionViewCell.swift in Sources */,
 				B30D672B2C73C81E0053144B /* HomeView.swift in Sources */,
 				B30D66FE2C73C5860053144B /* SceneDelegate.swift in Sources */,
 				B37239602C74D65F00EE8241 /* SanityService.swift in Sources */,
