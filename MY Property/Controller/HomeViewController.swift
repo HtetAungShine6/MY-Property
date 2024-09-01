@@ -14,7 +14,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     private let googleService = GoogleService()
     private let sanityService = SanityService()
     private var properties: [Property] = []
+    private var listings: [Listing] = []
     private var filteredProperties: [Property] = []
+    private var filteredListings: [Listing] = []
     private var isSearching = false
     
     let homeView = HomeView()
@@ -26,6 +28,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupNavigationBar()
         setupCollectionView()
         GetProperty()
+        GetListing()
     }
     
     override func loadView() {
@@ -40,6 +43,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupCollectionView()
         setupSearchBar()
         GetProperty()
+        GetListing()
     }
     
     func setupNavigationBar() {
@@ -184,6 +188,20 @@ extension HomeViewController {
                 }
             case .failure(let error):
                 print("Failed to fetch properties: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func GetListing() {
+        sanityService.fetchAllListing {result in
+            switch result {
+            case .success(let listings):
+                self.listings = listings
+                DispatchQueue.main.async {
+//                    self.homeView.
+                }
+            case .failure(let error):
+                print("Failed to fetch listings: \(error.localizedDescription)")
             }
         }
     }

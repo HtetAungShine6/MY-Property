@@ -36,6 +36,8 @@
 		B3D46F852C80D80900F44F6F /* PropertyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */; };
 		B3D46F882C80E6C700F44F6F /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F872C80E6C700F44F6F /* URLHelper.swift */; };
 		B3D46F8A2C80E96100F44F6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F892C80E96100F44F6F /* ProfileViewController.swift */; };
+		BA43BEB02C84C3840036175F /* ListingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BEAF2C84C3840036175F /* ListingResponse.swift */; };
+		BA43BEB22C84C5960036175F /* AllListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BEB12C84C5960036175F /* AllListing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3D46F872C80E6C700F44F6F /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		B3D46F892C80E96100F44F6F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BA43BEAF2C84C3840036175F /* ListingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingResponse.swift; sourceTree = "<group>"; };
+		BA43BEB12C84C5960036175F /* AllListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				B30D67282C73C7DF0053144B /* PropertyResponse.swift */,
+				BA43BEAF2C84C3840036175F /* ListingResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				B37239632C74F01D00EE8241 /* AllProperty.swift */,
+				BA43BEB12C84C5960036175F /* AllListing.swift */,
 			);
 			path = NetworkUseCases;
 			sourceTree = "<group>";
@@ -307,10 +313,12 @@
 				B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */,
 				B30D672E2C73C8640053144B /* APIManager.swift in Sources */,
 				B30D67002C73C5860053144B /* ViewController.swift in Sources */,
+				BA43BEB22C84C5960036175F /* AllListing.swift in Sources */,
 				B30D67312C73C90C0053144B /* GoogleService.swift in Sources */,
 				B317B9A52C7A2F6C001836EB /* FirebaseManager.swift in Sources */,
 				B3D46F8A2C80E96100F44F6F /* ProfileViewController.swift in Sources */,
 				B317B9A82C7B924C001836EB /* app_utility.swift in Sources */,
+				BA43BEB02C84C3840036175F /* ListingResponse.swift in Sources */,
 				B30D67292C73C7DF0053144B /* PropertyResponse.swift in Sources */,
 				B30D66FC2C73C5860053144B /* AppDelegate.swift in Sources */,
 				B3D46F852C80D80900F44F6F /* PropertyCollectionViewCell.swift in Sources */,
