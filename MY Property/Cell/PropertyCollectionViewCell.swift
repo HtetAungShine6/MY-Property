@@ -35,7 +35,7 @@ class PropertyCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func setupCell() {
-        contentView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        contentView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
         contentView.layer.cornerRadius = 10
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.2
