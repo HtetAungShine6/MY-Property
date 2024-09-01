@@ -1,31 +1,33 @@
 //
-//  HomeView.swift
+//  ListingsHomeView.swift
 //  MY Property
 //
-//  Created by Akito Daiki on 20/08/2024.
+//  Created by Lynn Thit Nyi Nyi on 2/9/2567 BE.
 //
 
 import Foundation
 import UIKit
 
-class HomeView: UIView {
+class ListingsHomeView: UIView {
     
     lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.placeholder = "Search properties"
+        searchBar.placeholder = "Search listings"
         searchBar.backgroundImage = UIImage()
         return searchBar
     }()
     
-    lazy var propertyCollectionView: UICollectionView = {
+    lazy var listingCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 16
         layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 20, right: 10)
         
-        let propertyCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        propertyCollectionView.backgroundColor = .white
-        return propertyCollectionView
+        let listingCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        listingCollectionView.backgroundColor = .white
+        listingCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        listingCollectionView.showsHorizontalScrollIndicator = false
+        return listingCollectionView
     }()
     
     // MARK: - Initializer
@@ -45,7 +47,7 @@ class HomeView: UIView {
         
         // Add subviews
         addSubview(searchBar)
-        addSubview(propertyCollectionView)
+        addSubview(listingCollectionView)
         
         // Setup constraints
         setupConstraints()
@@ -54,17 +56,18 @@ class HomeView: UIView {
     // MARK: - Constraints Setup
     private func setupConstraints() {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        propertyCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        listingCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             searchBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             searchBar.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             
-            propertyCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
-            propertyCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            propertyCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            propertyCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            listingCollectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 20),
+            listingCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            listingCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            listingCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            
         ])
     }
 }

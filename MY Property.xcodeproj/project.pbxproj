@@ -38,6 +38,9 @@
 		B3D46F8A2C80E96100F44F6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F892C80E96100F44F6F /* ProfileViewController.swift */; };
 		BA43BEB02C84C3840036175F /* ListingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BEAF2C84C3840036175F /* ListingResponse.swift */; };
 		BA43BEB22C84C5960036175F /* AllListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BEB12C84C5960036175F /* AllListing.swift */; };
+		BA43BEB42C84FA400036175F /* ListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BEB32C84FA400036175F /* ListingsViewController.swift */; };
+		BA43BEB62C84FAC00036175F /* ListingsHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BEB52C84FAC00036175F /* ListingsHomeView.swift */; };
+		BA43BEB82C84FE9D0036175F /* ListingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA43BEB72C84FE9D0036175F /* ListingsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,9 @@
 		B3D46F892C80E96100F44F6F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BA43BEAF2C84C3840036175F /* ListingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingResponse.swift; sourceTree = "<group>"; };
 		BA43BEB12C84C5960036175F /* AllListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListing.swift; sourceTree = "<group>"; };
+		BA43BEB32C84FA400036175F /* ListingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsViewController.swift; sourceTree = "<group>"; };
+		BA43BEB52C84FAC00036175F /* ListingsHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsHomeView.swift; sourceTree = "<group>"; };
+		BA43BEB72C84FE9D0036175F /* ListingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B30D672A2C73C81E0053144B /* HomeView.swift */,
+				BA43BEB52C84FAC00036175F /* ListingsHomeView.swift */,
 				B317B9AB2C7C2038001836EB /* LoginScreen.swift */,
 			);
 			path = View;
@@ -149,6 +156,7 @@
 			children = (
 				B30D66FF2C73C5860053144B /* ViewController.swift */,
 				B317B9A92C7B97F6001836EB /* HomeViewController.swift */,
+				BA43BEB32C84FA400036175F /* ListingsViewController.swift */,
 				B3D46F892C80E96100F44F6F /* ProfileViewController.swift */,
 			);
 			path = Controller;
@@ -185,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */,
+				BA43BEB72C84FE9D0036175F /* ListingsCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -314,6 +323,7 @@
 				B30D672E2C73C8640053144B /* APIManager.swift in Sources */,
 				B30D67002C73C5860053144B /* ViewController.swift in Sources */,
 				BA43BEB22C84C5960036175F /* AllListing.swift in Sources */,
+				BA43BEB42C84FA400036175F /* ListingsViewController.swift in Sources */,
 				B30D67312C73C90C0053144B /* GoogleService.swift in Sources */,
 				B317B9A52C7A2F6C001836EB /* FirebaseManager.swift in Sources */,
 				B3D46F8A2C80E96100F44F6F /* ProfileViewController.swift in Sources */,
@@ -326,6 +336,8 @@
 				B30D66FE2C73C5860053144B /* SceneDelegate.swift in Sources */,
 				B37239602C74D65F00EE8241 /* SanityService.swift in Sources */,
 				B37239642C74F01D00EE8241 /* AllProperty.swift in Sources */,
+				BA43BEB82C84FE9D0036175F /* ListingsCollectionViewCell.swift in Sources */,
+				BA43BEB62C84FAC00036175F /* ListingsHomeView.swift in Sources */,
 				B317B9AA2C7B97F6001836EB /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,6 +25,7 @@ extension APIManager {
     
     func execute(with query: String, completion: @escaping(Result<ModelType, Error>) -> Void) {
         let urlString = "\(url)?query=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+        print(urlString)
         
         AF.request(urlString).validate(statusCode: 200..<300).responseDecodable(of: ModelType.self) { response in
             switch response.result {

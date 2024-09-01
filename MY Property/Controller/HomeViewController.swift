@@ -44,6 +44,20 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupSearchBar()
         GetProperty()
         GetListing()
+        
+        
+//        let propertyId = "bc50f850-c8ba-42e5-bfef-880d28c64729"
+//
+//        sanityService.fetchListings(byPropertyId: propertyId) { result in
+//            switch result {
+//            case .success(let listings):
+//                // Handle the listings
+//                print("Listings for property \(propertyId): \(listings)")
+//            case .failure(let error):
+//                // Handle the error
+//                print("Failed to fetch listings for DCONDO: \(error)")
+//            }
+//        }
     }
     
     func setupNavigationBar() {
@@ -126,6 +140,16 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         }
         
         print("Selected Property: \(selectedProperty.title)")
+        GetListingByPropertyId(propertyId: selectedProperty._id)
+        
+        // Instantiate the target view controller
+        let propertyDetailViewController = ListingsViewController()
+        
+        // Pass the selected property ID to the next view controller
+        propertyDetailViewController.propertyId = selectedProperty._id
+        
+        // Push the new view controller onto the navigation stack
+        navigationController?.pushViewController(propertyDetailViewController, animated: true)
     }
     
     
@@ -135,14 +159,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        //        if searchText.isEmpty {
-        //            isSearching = false
-        //            filteredProperties.removeAll()
-        //        } else {
-        //            isSearching = true
-        //            filteredProperties = properties.filter { $0.title.lowercased().contains(searchText.lowercased()) }
-        //        }
-        //        homeView.propertyCollectionView.reloadData()
         filteredProperties = searchText.isEmpty ? properties : properties.filter { $0.title.range(of: searchText, options: .caseInsensitive) != nil }
         isSearching = !filteredProperties.isEmpty
         homeView.propertyCollectionView.reloadData()
@@ -205,4 +221,22 @@ extension HomeViewController {
             }
         }
     }
+    
+    private func GetListingByPropertyId(propertyId: String) {
+           sanityService.fetchListingsByPropertyId(byPropertyId: propertyId) { result in
+               switch result {
+               case .success(let listings):
+                   self.listings = listings
+                   DispatchQueue.main.async {
+                       print("Listings for \(propertyId):")
+                       for listing in listings {
+                           print(listing.listingName)
+                       }
+                   }
+               case .failure(let error):
+                   print("Failed to fetch listings by property ID: \(error.localizedDescription)")
+               }
+           }
+       }
+    
 }

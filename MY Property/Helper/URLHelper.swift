@@ -9,9 +9,12 @@ import Foundation
 
 func buildImageURL(from partialURL: String) -> URL? {
     
-    let cleanedURLString = partialURL.replacingOccurrences(of: "image-", with: "")
-    let formattedURLString = cleanedURLString.replacingOccurrences(of: "-jpg", with: ".jpg")
-    let fullURLString = "https://cdn.sanity.io/images/gejbm6fo/production/\(formattedURLString)"
+    var cleanedURLString = partialURL.replacingOccurrences(of: "image-", with: "")
+    cleanedURLString = cleanedURLString.replacingOccurrences(of: "-jpg", with: ".jpg")
+    cleanedURLString = cleanedURLString.replacingOccurrences(of: "-png", with: ".png")
+    cleanedURLString = cleanedURLString.replacingOccurrences(of: "-webp", with: ".webp")
     
+    let fullURLString = "https://cdn.sanity.io/images/gejbm6fo/production/\(cleanedURLString)"
+    print(fullURLString)
     return URL(string: fullURLString)
 }

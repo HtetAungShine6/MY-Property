@@ -30,7 +30,21 @@ class SanityService {
         allListing.execute(with: query) { result in
             switch result {
             case .success(let listingResponse):
-                print("FETCHED LISTINGS: \(result)")
+                print("FETCHED LISTINGS")
+                completion(.success(listingResponse.result))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // Fetch listings by property ID
+    func fetchListingsByPropertyId(byPropertyId propertyId: String, completion: @escaping (Result<[Listing], Error>) -> Void) {
+        let query = "*[property._ref == \"\(propertyId)\"]"
+        allListing.execute(with: query) { result in
+            switch result {
+            case .success(let listingResponse):
+                print("FETCHED LISTINGS BY PROPERTY ID: \(propertyId)")
                 completion(.success(listingResponse.result))
             case .failure(let error):
                 completion(.failure(error))
