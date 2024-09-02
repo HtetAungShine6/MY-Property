@@ -1,4 +1,5 @@
 {
+  "originHash" : "a57bc4dbbce1cb4b3d72982d07bf4e25621b73fca756a60d907ad6b441e67b84",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -145,6 +146,15 @@
       }
     },
     {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "8a1be70a625683bc04d6903e2935bf23f3c6d609",
+        "version" : "5.19.7"
+      }
+    },
+    {
       "identity" : "swift-protobuf",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf.git",
@@ -154,5 +164,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

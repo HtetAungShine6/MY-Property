@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class PropertyCollectionViewCell: UICollectionViewCell {
     
@@ -40,7 +41,6 @@ class PropertyCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOpacity = 0.2
         contentView.layer.shadowOffset = CGSize(width: 2, height: 4)
         contentView.layer.masksToBounds = true
-                                                        
         
         contentView.addSubview(propertyImage)
         contentView.addSubview(propertyName)
@@ -62,23 +62,19 @@ class PropertyCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // Reset the image to prevent displaying the wrong image
+        propertyImage.image = UIImage(named: "placeholder_image")
+        propertyName.text = nil
+    }
+    
     func configure(with property: Property) {
         propertyName.text = property.title
         
         if let partialImageUrl = property.propertyHero.asset._ref {
             if let imageURL = buildImageURL(from: partialImageUrl) {
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: imageURL), let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.propertyImage.image = image
-                            print("IMAGE: \(image)")
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.propertyImage.image = UIImage(named: "placeholder_image")
-                        }
-                    }
-                }
+                propertyImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "placeholder_image"), options: .continueInBackground, completed: nil)
             } else {
                 propertyImage.image = UIImage(named: "placeholder_image")
             }

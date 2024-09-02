@@ -9,7 +9,6 @@ import UIKit
 
 class ListingsCollectionViewCell: UICollectionViewCell {
     
-    
     lazy var listingImage: UIImageView = {
         let listingImage = UIImageView()
         listingImage.contentMode = .scaleAspectFill
@@ -41,7 +40,6 @@ class ListingsCollectionViewCell: UICollectionViewCell {
         contentView.layer.shadowOpacity = 0.2
         contentView.layer.shadowOffset = CGSize(width: 2, height: 4)
         contentView.layer.masksToBounds = true
-                                                        
         
         contentView.addSubview(listingImage)
         contentView.addSubview(listingName)
@@ -57,13 +55,17 @@ class ListingsCollectionViewCell: UICollectionViewCell {
             listingImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             listingImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
             
-            
-        
-            
             listingName.topAnchor.constraint(equalTo: listingImage.bottomAnchor, constant: 8),
             listingName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
             listingName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        // Reset the image to prevent displaying the wrong image
+        listingImage.image = UIImage(named: "placeholder_image")
+        listingName.text = nil
     }
     
     func configure(with listing: Listing) {
@@ -71,18 +73,7 @@ class ListingsCollectionViewCell: UICollectionViewCell {
         
         if let partialImageUrl = listing.listingHero?.asset._ref {
             if let imageURL = buildImageURL(from: partialImageUrl) {
-                DispatchQueue.global().async {
-                    if let data = try? Data(contentsOf: imageURL), let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self.listingImage.image = image
-                            print("IMAGE: \(image)")
-                        }
-                    } else {
-                        DispatchQueue.main.async {
-                            self.listingImage.image = UIImage(named: "placeholder_image")
-                        }
-                    }
-                }
+                listingImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "placeholder_image"), options: .continueInBackground, completed: nil)
             } else {
                 listingImage.image = UIImage(named: "placeholder_image")
             }
