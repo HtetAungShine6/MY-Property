@@ -19,6 +19,8 @@ struct Listing: Codable {
     let listingName: String
     let description: String
     let price: Double
+    let minPrice: Double?
+    let maxPrice: Double?
     let listingType: String
     let statusActive: String
     let bedroom: Int

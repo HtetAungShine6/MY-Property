@@ -23,6 +23,13 @@ class ListingsCollectionViewCell: UICollectionViewCell {
         return listingName
     }()
     
+    lazy var listingPriceRange: UILabel = {
+        let listingMinPrice = UILabel()
+        listingMinPrice.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        listingMinPrice.textColor = .black
+        return listingMinPrice
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupCell()
@@ -43,9 +50,11 @@ class ListingsCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(listingImage)
         contentView.addSubview(listingName)
+        contentView.addSubview(listingPriceRange)
         
         listingImage.translatesAutoresizingMaskIntoConstraints = false
         listingName.translatesAutoresizingMaskIntoConstraints = false
+        listingPriceRange.translatesAutoresizingMaskIntoConstraints = false
     }
     
     fileprivate func setupConstraints() {
@@ -55,9 +64,13 @@ class ListingsCollectionViewCell: UICollectionViewCell {
             listingImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             listingImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
             
-            listingName.topAnchor.constraint(equalTo: listingImage.bottomAnchor, constant: 8),
-            listingName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
+            listingName.topAnchor.constraint(equalTo: listingImage.bottomAnchor, constant: 16),
+            listingName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             listingName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            listingPriceRange.topAnchor.constraint(equalTo: listingName.bottomAnchor, constant: 8),
+            listingPriceRange.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            listingPriceRange.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
     }
     
@@ -66,10 +79,17 @@ class ListingsCollectionViewCell: UICollectionViewCell {
         // Reset the image to prevent displaying the wrong image
         listingImage.image = UIImage(named: "placeholder_image")
         listingName.text = nil
+        listingPriceRange.text = "0"
     }
     
     func configure(with listing: Listing) {
         listingName.text = listing.listingName
+        
+        if let maxPrice = listing.maxPrice, maxPrice > 0 {
+            listingPriceRange.text = "\(Int(listing.minPrice?.rounded() ?? 0)) THB  -  \(Int(maxPrice.rounded())) THB"
+        } else {
+            listingPriceRange.text = "\(Int(listing.minPrice?.rounded() ?? 0)) THB"
+        }
         
         if let partialImageUrl = listing.listingHero?.asset._ref {
             if let imageURL = buildImageURL(from: partialImageUrl) {

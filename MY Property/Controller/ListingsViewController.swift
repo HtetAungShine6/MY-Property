@@ -88,7 +88,7 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
                 DispatchQueue.main.async {
                     print("Listings for \(propertyId):")
                     for listing in listings {
-                        print(listing.listingName)
+                        print(listing.listingName, String(describing: listing.minPrice ?? 0), String(describing: listing.maxPrice ?? 0))
                     }
                     self.listingsHomeView.listingCollectionView.reloadData()
                 }

@@ -40,7 +40,6 @@ struct Property: Codable {
 
     struct Facility: Codable {
         let facilityType: String
-        let facilityName: String?
         let description: String?
         let photos: [ImageAsset]?
     }

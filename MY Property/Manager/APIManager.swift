@@ -31,7 +31,7 @@ extension APIManager {
             switch response.result {
             case .success(let data):
                 completion(.success(data))
-                print("Successfully fetched data:")
+                print("Successfully fetched data")
             case .failure(let error):
                 completion(.failure(error))
                 print("Request error: \(error)")
