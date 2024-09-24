@@ -41,7 +41,7 @@ class ListingsCollectionViewCell: UICollectionViewCell {
     }
     
     fileprivate func setupCell() {
-        contentView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        contentView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.15)
         contentView.layer.cornerRadius = 10
         contentView.layer.shadowColor = UIColor.black.cgColor
         contentView.layer.shadowOpacity = 0.2
@@ -93,7 +93,12 @@ class ListingsCollectionViewCell: UICollectionViewCell {
         
         if let partialImageUrl = listing.listingHero?.asset._ref {
             if let imageURL = buildImageURL(from: partialImageUrl) {
-                listingImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "placeholder_image"), options: .continueInBackground, completed: nil)
+                listingImage.sd_setImage(
+                    with: imageURL,
+                    placeholderImage: UIImage(named: "placeholder_image"),
+                    options: .continueInBackground,
+                    completed: nil
+                )
             } else {
                 listingImage.image = UIImage(named: "placeholder_image")
             }

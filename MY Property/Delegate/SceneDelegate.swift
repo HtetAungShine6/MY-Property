@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -25,12 +24,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if UserDefaults.standard.bool(forKey: "AppState") {
             // User is signed in, show the TabBarController
             let tabBarController = UITabBarController()
+            let tabBarAppearance = UITabBarAppearance()
+            
+            tabBarAppearance.backgroundColor = .white
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
             
             // Home ViewController
             let homeVC = UINavigationController(rootViewController: HomeViewController())
             homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
             
-            // Profile ViewController (this is just an example, replace with your actual profile view controller)
+        // Profile ViewController (this is just an example, replace with your actual profile view controller)
             let profileVC = UINavigationController(rootViewController: ProfileViewController())
             profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
             

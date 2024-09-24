@@ -56,7 +56,7 @@ class PropertyCollectionViewCell: UICollectionViewCell {
             propertyImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             propertyImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
             
-            propertyName.topAnchor.constraint(equalTo: propertyImage.bottomAnchor, constant: 8),
+            propertyName.topAnchor.constraint(equalTo: propertyImage.bottomAnchor, constant: 12),
             propertyName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
             propertyName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
@@ -74,7 +74,12 @@ class PropertyCollectionViewCell: UICollectionViewCell {
         
         if let partialImageUrl = property.propertyHero.asset._ref {
             if let imageURL = buildImageURL(from: partialImageUrl) {
-                propertyImage.sd_setImage(with: imageURL, placeholderImage: UIImage(named: "placeholder_image"), options: .continueInBackground, completed: nil)
+                propertyImage.sd_setImage(
+                    with: imageURL,
+                    placeholderImage: UIImage(named: "placeholder_image"),
+                    options: .continueInBackground,
+                    completed: nil
+                )
             } else {
                 propertyImage.image = UIImage(named: "placeholder_image")
             }

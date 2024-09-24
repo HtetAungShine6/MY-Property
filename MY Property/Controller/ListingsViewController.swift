@@ -9,33 +9,33 @@ import UIKit
 
 class ListingsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
-    
-    
     var propertyId = ""
+    
     var listings:[Listing] = []
+    private var filteredListings: [Listing] = []
     
     let listingsHomeView = ListingsHomeView()
     private let sanityService = SanityService()
+    
+    var propertyLat: Double?
+    var propertyLong: Double?
 
+    private var isSearching = false
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupCollectionView()
+    }
     
     override func loadView() {
         self.view = listingsHomeView
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupNavigationBar()
-        setupCollectionView()
-        
-        getListings(propertyId: propertyId)
-    }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
         setupCollectionView()
-        
+        setupSearchBar()
         getListings(propertyId: propertyId)
 
         // Do any additional setup after loading the view.
@@ -48,7 +48,7 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        navigationItem.title = "MY Property"
+        navigationItem.title = "MY Listings"
     }
     
     // MARK: - CollectionView Setup
@@ -59,7 +59,7 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        listings.count
+        return isSearching ? filteredListings.count : listings.count
     }
     
     
@@ -72,13 +72,52 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListingCell", for: indexPath) as! ListingsCollectionViewCell
-        let listing = listings[indexPath.item]
+        let listing = isSearching ? filteredListings[indexPath.item] : listings[indexPath.item]
         cell.configure(with: listing)
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedListing: Listing
+        if isSearching {
+            selectedListing = filteredListings[indexPath.item]
+        } else {
+            selectedListing = listings[indexPath.item]
+        }
+        
+        // Navigate to ListingDetailViewController
+        let listingDetailViewController = ListingDetailViewController()
+        
+        // Pass the selected listing
+        listingDetailViewController.listing = selectedListing
+        
+        // Pass latitude and longitude
+        listingDetailViewController.propertyLat = self.propertyLat
+        listingDetailViewController.propertyLong = self.propertyLong
+        
+        // Push the new view controller onto the navigation stack
+        navigationController?.pushViewController(listingDetailViewController, animated: true)
+    }
+    
+    // MARK: - Search Bar Delegate
+    func setupSearchBar() {
+        listingsHomeView.searchBar.delegate = self
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredListings = searchText.isEmpty ? listings : listings.filter { $0.listingName.range(of: searchText, options: .caseInsensitive) != nil }
+        isSearching = !filteredListings.isEmpty
+        listingsHomeView.listingCollectionView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        filteredListings.removeAll()
+        listingsHomeView.listingCollectionView.reloadData()
+    }
+
     func getListings(propertyId: String) {
         
         sanityService.fetchListingsByPropertyId(byPropertyId: propertyId) { result in
@@ -97,15 +136,4 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
             }
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

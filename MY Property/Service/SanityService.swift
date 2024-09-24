@@ -17,7 +17,6 @@ class SanityService {
         allProperty.execute(with: query) { result in
             switch result {
             case .success(let propertyResponse):
-                print("FETCHED PROPERTIES")
                 completion(.success(propertyResponse.result))
             case .failure(let error):
                 completion(.failure(error))
@@ -30,7 +29,6 @@ class SanityService {
         allListing.execute(with: query) { result in
             switch result {
             case .success(let listingResponse):
-                print("FETCHED LISTINGS")
                 completion(.success(listingResponse.result))
             case .failure(let error):
                 completion(.failure(error))

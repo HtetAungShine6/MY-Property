@@ -13,10 +13,13 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     
     private let googleService = GoogleService()
     private let sanityService = SanityService()
+    
     private var properties: [Property] = []
-    private var listings: [Listing] = []
     private var filteredProperties: [Property] = []
+    
+    private var listings: [Listing] = []
     private var filteredListings: [Listing] = []
+    
     private var isSearching = false
     
     let homeView = HomeView()
@@ -24,11 +27,8 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         view.backgroundColor = .white
-        
-        setupNavigationBar()
+
         setupCollectionView()
-        GetProperty()
-        GetListing()
     }
     
     override func loadView() {
@@ -43,21 +43,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         setupCollectionView()
         setupSearchBar()
         GetProperty()
-        GetListing()
-        
-        
-//        let propertyId = "bc50f850-c8ba-42e5-bfef-880d28c64729"
-//
-//        sanityService.fetchListings(byPropertyId: propertyId) { result in
-//            switch result {
-//            case .success(let listings):
-//                // Handle the listings
-//                print("Listings for property \(propertyId): \(listings)")
-//            case .failure(let error):
-//                // Handle the error
-//                print("Failed to fetch listings for DCONDO: \(error)")
-//            }
-//        }
     }
     
     func setupNavigationBar() {
@@ -67,7 +52,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        navigationItem.title = "MY Property"
+        let userName = UILabel()
+        userName.text = "Welcome, \(FirebaseManager.shared.auth.currentUser?.displayName ?? "")"
+        userName.font = UIFont.systemFont(ofSize: 18)
+        userName.textColor = .black
         
         let profileImageView = UIImageView()
         profileImageView.contentMode = .scaleAspectFill
@@ -93,13 +81,18 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             profileImageView.image = UIImage(named: "placeholder_image")
         }
         
+        let profileStackView = UIStackView(arrangedSubviews: [profileImageView, userName])
+        profileStackView.axis = .horizontal
+        profileStackView.spacing = 8
+        profileStackView.alignment = .center
+        
         let signOutButton = UIButton(type: .system)
         signOutButton.setImage(UIImage(systemName: "door.right.hand.open"), for: .normal)
         signOutButton.tintColor = UIColor.red
         signOutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
         
         let signOutBarItem = UIBarButtonItem(customView: signOutButton)
-        let profileBarItem = UIBarButtonItem(customView: profileImageView)
+        let profileBarItem = UIBarButtonItem(customView: profileStackView)
         
         navigationItem.leftBarButtonItem = profileBarItem
         navigationItem.rightBarButtonItem = signOutBarItem
@@ -113,7 +106,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return properties.count
         return isSearching ? filteredProperties.count : properties.count
     }
     
@@ -127,7 +119,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 16
         let width = collectionView.frame.width - (padding * 2)
-        let height = collectionView.frame.height / 2.5
+        let height = collectionView.frame.height / 2.9
         return CGSize(width: width, height: height)
     }
     
@@ -147,6 +139,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         // Pass the selected property ID to the next view controller
         propertyDetailViewController.propertyId = selectedProperty._id
+        
+        // Pass latitude and longitude to ListingsViewController
+        propertyDetailViewController.propertyLat = selectedProperty.latitude
+        propertyDetailViewController.propertyLong = selectedProperty.longitude
         
         // Push the new view controller onto the navigation stack
         navigationController?.pushViewController(propertyDetailViewController, animated: true)
@@ -208,35 +204,20 @@ extension HomeViewController {
         }
     }
     
-    private func GetListing() {
-        sanityService.fetchAllListing {result in
+    private func GetListingByPropertyId(propertyId: String) {
+        sanityService.fetchListingsByPropertyId(byPropertyId: propertyId) { result in
             switch result {
             case .success(let listings):
                 self.listings = listings
                 DispatchQueue.main.async {
-//                    self.homeView.
+                    print("Listings for \(propertyId):")
+                    for listing in listings {
+                        print(listing.listingName)
+                    }
                 }
             case .failure(let error):
-                print("Failed to fetch listings: \(error.localizedDescription)")
+                print("Failed to fetch listings by property ID: \(error.localizedDescription)")
             }
         }
     }
-    
-    private func GetListingByPropertyId(propertyId: String) {
-           sanityService.fetchListingsByPropertyId(byPropertyId: propertyId) { result in
-               switch result {
-               case .success(let listings):
-                   self.listings = listings
-                   DispatchQueue.main.async {
-                       print("Listings for \(propertyId):")
-                       for listing in listings {
-                           print(listing.listingName)
-                       }
-                   }
-               case .failure(let error):
-                   print("Failed to fetch listings by property ID: \(error.localizedDescription)")
-               }
-           }
-       }
-    
 }

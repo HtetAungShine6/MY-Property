@@ -33,6 +33,8 @@
 		B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9AB2C7C2038001836EB /* LoginScreen.swift */; };
 		B37239602C74D65F00EE8241 /* SanityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B372395F2C74D65F00EE8241 /* SanityService.swift */; };
 		B37239642C74F01D00EE8241 /* AllProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37239632C74F01D00EE8241 /* AllProperty.swift */; };
+		B38DF7D02CA29AE4004CBBA8 /* ListingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38DF7CF2CA29AD9004CBBA8 /* ListingDetailView.swift */; };
+		B38DF7D22CA2A016004CBBA8 /* ListingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38DF7D12CA2A016004CBBA8 /* ListingDetailViewController.swift */; };
 		B3D46F852C80D80900F44F6F /* PropertyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */; };
 		B3D46F882C80E6C700F44F6F /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F872C80E6C700F44F6F /* URLHelper.swift */; };
 		B3D46F8A2C80E96100F44F6F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D46F892C80E96100F44F6F /* ProfileViewController.swift */; };
@@ -64,6 +66,8 @@
 		B317B9AB2C7C2038001836EB /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		B372395F2C74D65F00EE8241 /* SanityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanityService.swift; sourceTree = "<group>"; };
 		B37239632C74F01D00EE8241 /* AllProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProperty.swift; sourceTree = "<group>"; };
+		B38DF7CF2CA29AD9004CBBA8 /* ListingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailView.swift; sourceTree = "<group>"; };
+		B38DF7D12CA2A016004CBBA8 /* ListingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailViewController.swift; sourceTree = "<group>"; };
 		B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3D46F872C80E6C700F44F6F /* URLHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
 		B3D46F892C80E96100F44F6F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 		B30D67102C73C5C50053144B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B38DF7CF2CA29AD9004CBBA8 /* ListingDetailView.swift */,
 				B30D672A2C73C81E0053144B /* HomeView.swift */,
 				BA43BEB52C84FAC00036175F /* ListingsHomeView.swift */,
 				B317B9AB2C7C2038001836EB /* LoginScreen.swift */,
@@ -160,6 +165,7 @@
 				B317B9A92C7B97F6001836EB /* HomeViewController.swift */,
 				BA43BEB32C84FA400036175F /* ListingsViewController.swift */,
 				B3D46F892C80E96100F44F6F /* ProfileViewController.swift */,
+				B38DF7D12CA2A016004CBBA8 /* ListingDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -322,10 +328,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B38DF7D02CA29AE4004CBBA8 /* ListingDetailView.swift in Sources */,
 				B3D46F882C80E6C700F44F6F /* URLHelper.swift in Sources */,
 				B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */,
 				B30D672E2C73C8640053144B /* APIManager.swift in Sources */,
 				B30D67002C73C5860053144B /* ViewController.swift in Sources */,
+				B38DF7D22CA2A016004CBBA8 /* ListingDetailViewController.swift in Sources */,
 				BA43BEB22C84C5960036175F /* AllListing.swift in Sources */,
 				BA43BEB42C84FA400036175F /* ListingsViewController.swift in Sources */,
 				B30D67312C73C90C0053144B /* GoogleService.swift in Sources */,

@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 
 struct PropertyResponse: Codable {
     let result: [Property]
@@ -22,6 +21,8 @@ struct Property: Codable {
     let description: String
     let minPrice: Double
     let maxPrice: Double
+    let latitude: Double
+    let longitude: Double
     let propertyHero: ImageAsset
     let photos: [ImageAsset]?
     let facilities: [Facility]?
