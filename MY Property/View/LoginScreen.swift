@@ -55,5 +55,6 @@ class LoginScreen: UIView {
     
     @objc private func signInButtonTapped() {
         googleService.signInWithGoogle()
+        googleService.printKeychainData()
     }
 }

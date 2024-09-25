@@ -19,6 +19,7 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
     
     var propertyLat: Double?
     var propertyLong: Double?
+    var facilities: [Property.Facility]?
 
     private var isSearching = false
 
@@ -95,6 +96,7 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
         // Pass latitude and longitude
         listingDetailViewController.propertyLat = self.propertyLat
         listingDetailViewController.propertyLong = self.propertyLong
+        listingDetailViewController.facilities = self.facilities
         
         // Push the new view controller onto the navigation stack
         navigationController?.pushViewController(listingDetailViewController, animated: true)

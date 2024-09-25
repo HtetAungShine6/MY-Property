@@ -140,9 +140,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Pass the selected property ID to the next view controller
         propertyDetailViewController.propertyId = selectedProperty._id
         
-        // Pass latitude and longitude to ListingsViewController
+        // Pass latitude and longitude, and facilities to ListingsViewController
         propertyDetailViewController.propertyLat = selectedProperty.latitude
         propertyDetailViewController.propertyLong = selectedProperty.longitude
+        propertyDetailViewController.facilities = selectedProperty.facilities
         
         // Push the new view controller onto the navigation stack
         navigationController?.pushViewController(propertyDetailViewController, animated: true)
@@ -174,6 +175,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
             self.googleService.signOutWithGoogle()
+            self.googleService.printKeychainData()
         }
         
         let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)

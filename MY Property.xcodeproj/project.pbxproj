@@ -31,6 +31,13 @@
 		B317B9A82C7B924C001836EB /* app_utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9A72C7B924C001836EB /* app_utility.swift */; };
 		B317B9AA2C7B97F6001836EB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9A92C7B97F6001836EB /* HomeViewController.swift */; };
 		B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9AB2C7C2038001836EB /* LoginScreen.swift */; };
+		B3623DF02CA4ABFE003AE477 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B3623DEF2CA4ABFE003AE477 /* FirebaseFirestore */; };
+		B3623DF22CA4AC19003AE477 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B3623DF12CA4AC19003AE477 /* FirebaseStorage */; };
+		B3623DF62CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3623DF52CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift */; };
+		B3623DFA2CA4B01D003AE477 /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3623DF92CA4B01D003AE477 /* FavoriteView.swift */; };
+		B3623DFC2CA4BD49003AE477 /* FavoriteListing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3623DFB2CA4BD43003AE477 /* FavoriteListing.swift */; };
+		B3623DFF2CA4C070003AE477 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B3623DFE2CA4C070003AE477 /* KeychainSwift */; };
+		B3623E012CA4C097003AE477 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3623E002CA4C092003AE477 /* KeychainManager.swift */; };
 		B37239602C74D65F00EE8241 /* SanityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B372395F2C74D65F00EE8241 /* SanityService.swift */; };
 		B37239642C74F01D00EE8241 /* AllProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37239632C74F01D00EE8241 /* AllProperty.swift */; };
 		B38DF7D02CA29AE4004CBBA8 /* ListingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38DF7CF2CA29AD9004CBBA8 /* ListingDetailView.swift */; };
@@ -67,6 +74,10 @@
 		B317B9A72C7B924C001836EB /* app_utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = app_utility.swift; sourceTree = "<group>"; };
 		B317B9A92C7B97F6001836EB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B317B9AB2C7C2038001836EB /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		B3623DF52CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		B3623DF92CA4B01D003AE477 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		B3623DFB2CA4BD43003AE477 /* FavoriteListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListing.swift; sourceTree = "<group>"; };
+		B3623E002CA4C092003AE477 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		B372395F2C74D65F00EE8241 /* SanityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanityService.swift; sourceTree = "<group>"; };
 		B37239632C74F01D00EE8241 /* AllProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllProperty.swift; sourceTree = "<group>"; };
 		B38DF7CF2CA29AD9004CBBA8 /* ListingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListingDetailView.swift; sourceTree = "<group>"; };
@@ -94,10 +105,13 @@
 				B30D67212C73C6BB0053144B /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				B30D671A2C73C6640053144B /* GoogleSignIn in Frameworks */,
 				BA43BEBB2C85169D0036175F /* SDWebImage in Frameworks */,
+				B3623DFF2CA4C070003AE477 /* KeychainSwift in Frameworks */,
+				B3623DF22CA4AC19003AE477 /* FirebaseStorage in Frameworks */,
 				B317B9A22C7A2EA8001836EB /* FirebaseAuth in Frameworks */,
 				B30D67232C73C6BB0053144B /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				B30D671F2C73C6BB0053144B /* FirebaseAnalytics in Frameworks */,
 				B30D671C2C73C6640053144B /* GoogleSignInSwift in Frameworks */,
+				B3623DF02CA4ABFE003AE477 /* FirebaseFirestore in Frameworks */,
 				B30D67272C73C6BB0053144B /* FirebaseAppDistribution-Beta in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -147,6 +161,7 @@
 		B30D670F2C73C5C00053144B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B3623DFB2CA4BD43003AE477 /* FavoriteListing.swift */,
 				B30D67282C73C7DF0053144B /* PropertyResponse.swift */,
 				BA43BEAF2C84C3840036175F /* ListingResponse.swift */,
 			);
@@ -160,6 +175,7 @@
 				B30D672A2C73C81E0053144B /* HomeView.swift */,
 				BA43BEB52C84FAC00036175F /* ListingsHomeView.swift */,
 				B317B9AB2C7C2038001836EB /* LoginScreen.swift */,
+				B3623DF92CA4B01D003AE477 /* FavoriteView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,9 +183,9 @@
 		B30D67112C73C5CB0053144B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				BA43BEB32C84FA400036175F /* ListingsViewController.swift */,
 				B30D66FF2C73C5860053144B /* ViewController.swift */,
 				B317B9A92C7B97F6001836EB /* HomeViewController.swift */,
-				BA43BEB32C84FA400036175F /* ListingsViewController.swift */,
 				B3D46F892C80E96100F44F6F /* ProfileViewController.swift */,
 				B38DF7D12CA2A016004CBBA8 /* ListingDetailViewController.swift */,
 				BACD577C2CA312E000423BC8 /* FavoritesViewController.swift */,
@@ -191,6 +207,7 @@
 		B30D672C2C73C8460053144B /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				B3623E002CA4C092003AE477 /* KeychainManager.swift */,
 				B30D672D2C73C8640053144B /* APIManager.swift */,
 				B317B9A42C7A2F6C001836EB /* FirebaseManager.swift */,
 			);
@@ -211,6 +228,7 @@
 			children = (
 				B3D46F842C80D80900F44F6F /* PropertyCollectionViewCell.swift */,
 				BA43BEB72C84FE9D0036175F /* ListingsCollectionViewCell.swift */,
+				B3623DF52CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -274,6 +292,9 @@
 				B30D67262C73C6BB0053144B /* FirebaseAppDistribution-Beta */,
 				B317B9A12C7A2EA8001836EB /* FirebaseAuth */,
 				BA43BEBA2C85169D0036175F /* SDWebImage */,
+				B3623DEF2CA4ABFE003AE477 /* FirebaseFirestore */,
+				B3623DF12CA4AC19003AE477 /* FirebaseStorage */,
+				B3623DFE2CA4C070003AE477 /* KeychainSwift */,
 			);
 			productName = "MY Property";
 			productReference = B30D66F82C73C5860053144B /* MY Property.app */;
@@ -308,6 +329,7 @@
 				B30D67182C73C6630053144B /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B30D671D2C73C6BB0053144B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				BA43BEB92C85169D0036175F /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				B3623DFD2CA4C070003AE477 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = B30D66F92C73C5860053144B /* Products */;
 			projectDirPath = "";
@@ -337,10 +359,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3623DFC2CA4BD49003AE477 /* FavoriteListing.swift in Sources */,
 				B38DF7D02CA29AE4004CBBA8 /* ListingDetailView.swift in Sources */,
 				BACD577F2CA312F100423BC8 /* AccountViewController.swift in Sources */,
 				B3D46F882C80E6C700F44F6F /* URLHelper.swift in Sources */,
 				B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */,
+				B3623DF62CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift in Sources */,
 				B30D672E2C73C8640053144B /* APIManager.swift in Sources */,
 				B30D67002C73C5860053144B /* ViewController.swift in Sources */,
 				B38DF7D22CA2A016004CBBA8 /* ListingDetailViewController.swift in Sources */,
@@ -354,10 +378,12 @@
 				B317B9A82C7B924C001836EB /* app_utility.swift in Sources */,
 				BA43BEB02C84C3840036175F /* ListingResponse.swift in Sources */,
 				B30D67292C73C7DF0053144B /* PropertyResponse.swift in Sources */,
+				B3623E012CA4C097003AE477 /* KeychainManager.swift in Sources */,
 				B30D66FC2C73C5860053144B /* AppDelegate.swift in Sources */,
 				B3D46F852C80D80900F44F6F /* PropertyCollectionViewCell.swift in Sources */,
 				B30D672B2C73C81E0053144B /* HomeView.swift in Sources */,
 				B30D66FE2C73C5860053144B /* SceneDelegate.swift in Sources */,
+				B3623DFA2CA4B01D003AE477 /* FavoriteView.swift in Sources */,
 				B37239602C74D65F00EE8241 /* SanityService.swift in Sources */,
 				B37239642C74F01D00EE8241 /* AllProperty.swift in Sources */,
 				BA43BEB82C84FE9D0036175F /* ListingsCollectionViewCell.swift in Sources */,
@@ -611,6 +637,14 @@
 				minimumVersion = 11.1.0;
 			};
 		};
+		B3623DFD2CA4C070003AE477 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		BA43BEB92C85169D0036175F /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -666,6 +700,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B30D671D2C73C6BB0053144B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		B3623DEF2CA4ABFE003AE477 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B30D671D2C73C6BB0053144B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		B3623DF12CA4AC19003AE477 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B30D671D2C73C6BB0053144B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		B3623DFE2CA4C070003AE477 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B3623DFD2CA4C070003AE477 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 		BA43BEBA2C85169D0036175F /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;

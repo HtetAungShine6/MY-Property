@@ -39,6 +39,7 @@ class GoogleService {
                 }
                 
                 print("User Successfully Logged In")
+                
                 UserDefaults.standard.set(true, forKey: "AppState")
                 
                 DispatchQueue.main.async {
@@ -56,6 +57,8 @@ class GoogleService {
         do {
             try Auth.auth().signOut()
             UserDefaults.standard.set(false, forKey: "AppState")
+            KeychainManager.shared.keychain.delete("userEmail")
+            KeychainManager.shared.keychain.delete("fId")
             DispatchQueue.main.async {
                 if let windowScene = UIApplication.shared.connectedScenes
                     .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
@@ -65,6 +68,20 @@ class GoogleService {
             }
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
+        }
+    }
+    
+    func printKeychainData() {
+        if let userEmail = KeychainManager.shared.keychain.get("userEmail") {
+            print("User Email: \(userEmail)")
+        } else {
+            print("No email found in Keychain.")
+        }
+        
+        if let userId = KeychainManager.shared.keychain.get("fId") {
+            print("Firebase User ID: \(userId)")
+        } else {
+            print("No Firebase User ID found in Keychain.")
         }
     }
     

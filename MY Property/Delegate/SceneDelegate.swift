@@ -68,7 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // Profile ViewController (this is just an example, replace with your actual profile view controller)
             let profileVC = UINavigationController(rootViewController: ProfileViewController())
-            profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+            profileVC.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(systemName: "gear.circle"), selectedImage: UIImage(systemName: "gear.circle.fill"))
             
             // Add all ViewControllers to the TabBar
             tabBarController.viewControllers = [homeVC, profileVC]
