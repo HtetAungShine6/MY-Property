@@ -125,10 +125,10 @@
 		B30D66FA2C73C5860053144B /* MY Property */ = {
 			isa = PBXGroup;
 			children = (
+				B317B99B2C7A26C3001836EB /* GoogleService-Info.plist */,
 				B3D46F862C80E6B600F44F6F /* Helper */,
 				B31525402C80912200F6FBFF /* Cell */,
 				B317B9A62C7B9232001836EB /* Utility */,
-				B317B99B2C7A26C3001836EB /* GoogleService-Info.plist */,
 				B37239622C74EFBD00EE8241 /* NetworkUseCases */,
 				B30D672F2C73C8FF0053144B /* Service */,
 				B30D672C2C73C8460053144B /* Manager */,

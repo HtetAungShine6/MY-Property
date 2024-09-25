@@ -40,23 +40,13 @@ class GoogleService {
                 
                 print("User Successfully Logged In")
                 UserDefaults.standard.set(true, forKey: "AppState")
-                if let window = UIApplication.shared.connectedScenes
-                    .compactMap({ $0 as? UIWindowScene })
-                    .first?.windows.first {
-                    
-                    // Set the TabBarController as the root view controller
-                    let tabBarController = UITabBarController()
-                    
-                    let homeVC = UINavigationController(rootViewController: HomeViewController())
-                    homeVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
-                    
-                    let profileVC = UINavigationController(rootViewController: ProfileViewController())
-                    profileVC.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
-                    
-                    tabBarController.viewControllers = [homeVC, profileVC]
-                    
-                    window.rootViewController = tabBarController
-                    window.makeKeyAndVisible()
+                
+                DispatchQueue.main.async {
+                    if let windowScene = UIApplication.shared.connectedScenes
+                        .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+                       let sceneDelegate = windowScene.delegate as? SceneDelegate {
+                        sceneDelegate.updateRootViewController()
+                    }
                 }
             }
         }
@@ -66,6 +56,13 @@ class GoogleService {
         do {
             try Auth.auth().signOut()
             UserDefaults.standard.set(false, forKey: "AppState")
+            DispatchQueue.main.async {
+                if let windowScene = UIApplication.shared.connectedScenes
+                    .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
+                   let sceneDelegate = windowScene.delegate as? SceneDelegate {
+                    sceneDelegate.updateRootViewController()
+                }
+            }
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }

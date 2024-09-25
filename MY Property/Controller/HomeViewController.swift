@@ -174,12 +174,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         
         let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
             self.googleService.signOutWithGoogle()
-            if let window = UIApplication.shared.connectedScenes
-                .compactMap({ $0 as? UIWindowScene })
-                .first?.windows.first {
-                window.rootViewController = ViewController()
-                window.makeKeyAndVisible()
-            }
         }
         
         let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)

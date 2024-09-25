@@ -55,8 +55,8 @@ class ListingDetailView: UIView {
         NSLayoutConstraint.activate([
             // Constraints for listing image
             listingDetailImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
-            listingDetailImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            listingDetailImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            listingDetailImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            listingDetailImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             listingDetailImage.heightAnchor.constraint(equalToConstant: 200),
             
             // Constraints for mapView
