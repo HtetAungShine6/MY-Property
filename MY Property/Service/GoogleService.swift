@@ -49,6 +49,9 @@ class GoogleService {
                         sceneDelegate.updateRootViewController()
                     }
                 }
+                
+                KeychainManager.shared.keychain.set(authResult?.user.email ?? "", forKey: "email")
+                KeychainManager.shared.keychain.set(authResult?.user.uid ?? "", forKey: "fId")
             }
         }
     }
@@ -57,8 +60,6 @@ class GoogleService {
         do {
             try Auth.auth().signOut()
             UserDefaults.standard.set(false, forKey: "AppState")
-            KeychainManager.shared.keychain.delete("userEmail")
-            KeychainManager.shared.keychain.delete("fId")
             DispatchQueue.main.async {
                 if let windowScene = UIApplication.shared.connectedScenes
                     .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene,
@@ -66,13 +67,15 @@ class GoogleService {
                     sceneDelegate.updateRootViewController()
                 }
             }
+            KeychainManager.shared.keychain.delete("email")
+            KeychainManager.shared.keychain.delete("fId")
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
     }
     
     func printKeychainData() {
-        if let userEmail = KeychainManager.shared.keychain.get("userEmail") {
+        if let userEmail = KeychainManager.shared.keychain.get("email") {
             print("User Email: \(userEmail)")
         } else {
             print("No email found in Keychain.")

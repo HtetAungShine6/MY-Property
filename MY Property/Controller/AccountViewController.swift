@@ -6,24 +6,72 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AccountViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    let accountView = AccountView()
 
-        // Do any additional setup after loading the view.
+    override func loadView() {
+        self.view = accountView
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Set the background color
+        view.backgroundColor = .white
+        
+        // Fetch user data from Firebase
+        if let user = Auth.auth().currentUser {
+            let profileImageURL = user.photoURL?.absoluteString 
+            let name = user.displayName ?? "No Username found"
+            let email = user.email ?? "No Email found"
+            
+            // Configure the account view with user data
+            accountView.configure(with: profileImageURL, name: name, email: email)
+        } else {
+            // Handle the case where the user is not authenticated
+            accountView.configure(with: nil, name: "No User", email: "No Email")
+        }
     }
-    */
-
 }
+
+
+//import UIKit
+//import FirebaseAuth
+//
+//class AccountViewController: UIViewController {
+//
+//    let accountView = AccountView()
+//    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        // Do any additional setup after loading the view.
+//        view.backgroundColor = .white
+//        view.addSubview(accountView)
+//        accountView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        NSLayoutConstraint.activate([
+//            accountView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            accountView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            accountView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            accountView.heightAnchor.constraint(equalToConstant: 400)
+//        ])
+//        
+//        if let user = Auth.auth().currentUser {
+//            let profileImageURL = user.photoURL?.absoluteString
+//            let name = user.displayName ?? "No Username found"
+//            let email = user.email ?? "No Email found"
+//            
+//            // Configure the account view
+//            accountView.configure(with: profileImageURL, name: name, email: email)
+//        } else {
+//            // Handle the case where the user is not authenticated
+//            accountView.configure(with: nil, name: "No User", email: "No Email")
+//        }
+//
+//    }
+//
+//}

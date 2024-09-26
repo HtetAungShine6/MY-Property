@@ -71,11 +71,11 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     private func fetchFavoriteListings() {
-        guard let user = Auth.auth().currentUser else { return }
-        let userEmail = user.email ?? ""
+        guard let _ = Auth.auth().currentUser else { return }
+        let userEmail = KeychainManager.shared.keychain.get("email")
         
         firestore.collection("favorites")
-            .whereField("userEmail", isEqualTo: userEmail)
+            .whereField("userEmail", isEqualTo: userEmail ?? "no email found")
             .getDocuments { [weak self] (snapshot, error) in
                 if let error = error {
                     print("Error fetching favorite listings: \(error)")

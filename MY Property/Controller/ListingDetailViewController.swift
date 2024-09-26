@@ -19,8 +19,8 @@ class ListingDetailViewController: UIViewController {
     var propertyLong: Double?
     var facilities: [Property.Facility]?
     let firestore = Firestore.firestore()
-    var isFavorite: Bool = false
-        var favoriteDocumentId: String?
+    var shouldSetFavorite: Bool = false
+    var favoriteDocumentId: String?
     
     let listingDetailView = ListingDetailView()
     
@@ -85,29 +85,22 @@ class ListingDetailViewController: UIViewController {
     
     @objc private func favoriteButtonTapped() {
         // Toggle favorite state and update the button appearance
-        //        let isFavorite = listingDetailView.favoriteButton.currentImage == UIImage(systemName: "heart.fill")
-        //
-        //        if isFavorite {
-        //            listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        //        } else {
-        //            listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        //        }
-        if isFavorite {
-            // If the listing is already favorited, remove it from Firestore
+        if shouldSetFavorite {
+            // If the listing is already favorited, can remove it from Firestore by clicking it
             removeFavoriteListingFromFirestore()
         } else {
-            // If the listing is not yet favorited, save it to Firestore
+            // If the listing is not yet favorited, cab save it to Firestore by clicking it
             saveFavoriteListingToFirestore()
         }
     }
     
     private func saveFavoriteListingToFirestore() {
-        guard let user = Auth.auth().currentUser,
+        guard let _ = Auth.auth().currentUser,
               let listing = listing else { return }
         
         let favoriteData: [String: Any] = [
-            "userEmail": user.email ?? "unknown email",
-            "firebaseId": user.uid,
+            "userEmail": KeychainManager.shared.keychain.get("email") ?? "no email found",
+            "firebaseId": KeychainManager.shared.keychain.get("fId") ?? "no id found",
             "listingName": listing.listingName,
             "listingPrice": listing.price,
             "listingImage": buildImageURL(from: listing.listingHero?.asset._ref ?? "no image")?.absoluteString ?? "no_image"
@@ -117,7 +110,7 @@ class ListingDetailViewController: UIViewController {
             if let error = error {
                 print("Error saving favorite: \(error)")
             } else {
-                self?.isFavorite = true
+                self?.shouldSetFavorite = true
                 self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 print("Favorite saved successfully!")
             }
@@ -131,7 +124,7 @@ class ListingDetailViewController: UIViewController {
             if let error = error {
                 print("Error removing favorite: \(error)")
             } else {
-                self?.isFavorite = false
+                self?.shouldSetFavorite = false
                 self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 print("Favorite removed successfully!")
             }
@@ -139,10 +132,11 @@ class ListingDetailViewController: UIViewController {
     }
     
     private func checkIfFavorite() {
-        guard let user = Auth.auth().currentUser, let listing = listing else { return }
+//        guard let user = Auth.auth().currentUser, let listing = listing else { return }
+        guard let user = KeychainManager.shared.keychain.get("fId"), let listing = listing else { return }
         
         firestore.collection("favorites")
-            .whereField("firebaseId", isEqualTo: user.uid)
+            .whereField("firebaseId", isEqualTo: user)
             .whereField("listingName", isEqualTo: listing.listingName)
             .getDocuments { [weak self] (snapshot, error) in
                 if let error = error {
@@ -151,12 +145,12 @@ class ListingDetailViewController: UIViewController {
                 }
                 
                 guard let documents = snapshot?.documents, let document = documents.first else {
-                    self?.isFavorite = false
+                    self?.shouldSetFavorite = false
                     self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
                     return
                 }
                 
-                self?.isFavorite = true
+                self?.shouldSetFavorite = true
                 self?.favoriteDocumentId = document.documentID
                 self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
             }

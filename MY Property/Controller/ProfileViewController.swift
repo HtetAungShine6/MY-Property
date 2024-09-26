@@ -9,6 +9,15 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let signOutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Sign Out", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .red
+        button.layer.cornerRadius = 5
+        return button
+    }()
+    
     let tableData = ["Accounts", "Favorites", "Language"]
     
     
@@ -42,7 +51,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             break
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -53,9 +62,40 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         
         view.addSubview(tableView)
-
+        setupSignOutButton()
     }
     
+    func setupSignOutButton() {
+        // Add the button to the view
+        view.addSubview(signOutButton)
+        
+        // Set button constraints or frame
+        signOutButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            signOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            signOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            signOutButton.widthAnchor.constraint(equalToConstant: 100),
+            signOutButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        // Add action for sign-out
+        signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
+    }
+    
+    @objc func signOut() {
+//        // Call the sign out function from GoogleService
+        let googleService = GoogleService()
+        googleService.printKeychainData()
+//        
+//        // Optionally, navigate to the login screen or show an alert
+//        let alert = UIAlertController(title: "Signed Out", message: "You have been signed out successfully.", preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
+//            // Navigate back to login or main screen if necessary
+//            // e.g., self.navigationController?.popToRootViewController(animated: true)
+//        })
+//        self.present(alert, animated: true)
+        
+    }
     
     
 }
