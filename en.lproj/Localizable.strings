@@ -22,3 +22,10 @@
 "notifications" = "Notifications";
 "report_a_problem" = "Report a problem";
 "settings" = "Settings";
+"contract" = "Contract";
+"facilities" = "Facilities";
+"location" = "Location";
+"furniture_type" = "Furniture Type";
+"status" = "Status - %@"; 
+"starting_from" = "Starting from %@ months";
+"no_facilities" = "No facilities available";

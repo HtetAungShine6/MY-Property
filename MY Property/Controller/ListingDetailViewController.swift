@@ -55,7 +55,7 @@ class ListingDetailViewController: UIViewController {
                 listingDetailView.listingDetailImage.image = UIImage(named: "placeholder_image")
             }
             
-            let statusText = "Status - \(listing.statusActive)"
+            let statusText = String(format: NSLocalizedString("status", comment: ""), listing.statusActive)
             let attributedStatus = NSMutableAttributedString(string: statusText)
             if let activeRange = statusText.range(of: listing.statusActive) {
                 let nsRange = NSRange(activeRange, in: statusText)
@@ -66,7 +66,7 @@ class ListingDetailViewController: UIViewController {
                 let facilityTypes = facilities.map { $0.facilityType }.joined(separator: ", ")
                 listingDetailView.facilitiesLabel.text = facilityTypes
             } else {
-                listingDetailView.facilitiesLabel.text = "No facilities available"
+                listingDetailView.facilitiesLabel.text = NSLocalizedString("no_facilities", comment: "")
             }
             
             listingDetailView.listingNameLabel.text = listing.listingName
@@ -74,10 +74,10 @@ class ListingDetailViewController: UIViewController {
             listingDetailView.contractLabel.text = "Starting from \(listing.minimumContractInMonth) months"
             listingDetailView.furnitureLabel.text = listing.furniture
             
-            listingDetailView.contractPlaceholderLabel.text = "Contract"
-            listingDetailView.facilitiesPlaceholderLabel.text = "Facilities"
-            listingDetailView.locationLabel.text = "Location"
-            listingDetailView.furniturePlaceholderLabel.text = "Furniture Type"
+            listingDetailView.contractPlaceholderLabel.text = NSLocalizedString("contract", comment: "")
+            listingDetailView.facilitiesPlaceholderLabel.text = NSLocalizedString("facilities", comment: "")
+            listingDetailView.locationLabel.text = NSLocalizedString("location", comment: "")
+            listingDetailView.furniturePlaceholderLabel.text = NSLocalizedString("furniture_type", comment: "")
             listingDetailView.statusPlaceholderLabel.attributedText = attributedStatus
         }
     }

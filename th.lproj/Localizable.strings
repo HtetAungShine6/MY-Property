@@ -22,3 +22,10 @@
 "notifications" = "การแจ้งเตือน";
 "report_a_problem" = "แจ้งปัญหา";
 "settings" = "การตั้งค่า";
+"contract" = "สัญญา";
+"facilities" = "สิ่งอำนวยความสะดวก";
+"location" = "สถานที่";
+"furniture_type" = "ประเภทเฟอร์นิเจอร์";
+"status" = "สถานะ - %@";
+"starting_from" = "เริ่มต้นจาก %@ เดือน";
+"no_facilities" = "ไม่มีสิ่งอำนวยความสะดวก";
