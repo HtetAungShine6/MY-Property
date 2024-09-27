@@ -115,6 +115,7 @@ class ListingsHomeView: UIView {
                 self.searchBar.alpha = 0
             }) { _ in
                 self.searchBar.text = ""
+                self.searchBar.resignFirstResponder()
                 self.searchIconButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal) // Change back to search icon
             }
         }

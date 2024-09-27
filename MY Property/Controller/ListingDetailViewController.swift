@@ -55,10 +55,12 @@ class ListingDetailViewController: UIViewController {
                 listingDetailView.listingDetailImage.image = UIImage(named: "placeholder_image")
             }
             
-            listingDetailView.listingNameLabel.text = listing.listingName
-            listingDetailView.descriptionLabel.text = listing.description
-            listingDetailView.facilitiesPlaceholderLabel.text = "Facilities"
-            listingDetailView.locationLabel.text = "Location"
+            let statusText = "Status - \(listing.statusActive)"
+            let attributedStatus = NSMutableAttributedString(string: statusText)
+            if let activeRange = statusText.range(of: listing.statusActive) {
+                let nsRange = NSRange(activeRange, in: statusText)
+                attributedStatus.addAttribute(.foregroundColor, value: UIColor.systemGreen, range: nsRange)
+            }
             
             if let facilities = facilities {
                 let facilityTypes = facilities.map { $0.facilityType }.joined(separator: ", ")
@@ -66,6 +68,17 @@ class ListingDetailViewController: UIViewController {
             } else {
                 listingDetailView.facilitiesLabel.text = "No facilities available"
             }
+            
+            listingDetailView.listingNameLabel.text = listing.listingName
+            listingDetailView.descriptionLabel.text = listing.description
+            listingDetailView.contractLabel.text = "Starting from \(listing.minimumContractInMonth) months"
+            listingDetailView.furnitureLabel.text = listing.furniture
+            
+            listingDetailView.contractPlaceholderLabel.text = "Contract"
+            listingDetailView.facilitiesPlaceholderLabel.text = "Facilities"
+            listingDetailView.locationLabel.text = "Location"
+            listingDetailView.furniturePlaceholderLabel.text = "Furniture Type"
+            listingDetailView.statusPlaceholderLabel.attributedText = attributedStatus
         }
     }
     
@@ -129,7 +142,6 @@ class ListingDetailViewController: UIViewController {
             } else {
                 self?.shouldSetFavorite = false
                 self?.updateFavoriteButton()
-//                self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 print("Favorite removed successfully!")
             }
         }
@@ -142,7 +154,6 @@ class ListingDetailViewController: UIViewController {
     }
     
     private func checkIfFavorite() {
-//        guard let user = Auth.auth().currentUser, let listing = listing else { return }
         guard let user = KeychainManager.shared.keychain.get("fId"), let listing = listing else { return }
         
         firestore.collection("favorites")
