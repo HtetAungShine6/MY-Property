@@ -79,5 +79,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window?.rootViewController = ViewController()
         }
     }
+    
+    func refreshUI() {
+        if let navigationController = window?.rootViewController as? UINavigationController {
+            let currentViewController = navigationController.visibleViewController
+            if currentViewController is HomeViewController {
+                let refreshedHomeViewController = HomeViewController()
+                navigationController.setViewControllers([refreshedHomeViewController], animated: false)
+            }
+        }
+    }
 }
 

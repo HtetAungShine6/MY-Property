@@ -19,8 +19,9 @@ class PropertyCollectionViewCell: UICollectionViewCell {
     
     lazy var propertyName: UILabel = {
         let propertyName = UILabel()
-        propertyName.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        propertyName.font = UIFont(name: "Fredoka-Regular", size: 20)
         propertyName.textColor = .black
+        propertyName.numberOfLines = 1
         return propertyName
     }()
     
@@ -54,11 +55,12 @@ class PropertyCollectionViewCell: UICollectionViewCell {
             propertyImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             propertyImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             propertyImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            propertyImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
+            propertyImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.75),
             
-            propertyName.topAnchor.constraint(equalTo: propertyImage.bottomAnchor, constant: 12),
+            propertyName.topAnchor.constraint(equalTo: propertyImage.bottomAnchor, constant: 10),
             propertyName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
             propertyName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            propertyName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
     

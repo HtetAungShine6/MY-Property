@@ -18,14 +18,14 @@ class ListingsCollectionViewCell: UICollectionViewCell {
     
     lazy var listingName: UILabel = {
         let listingName = UILabel()
-        listingName.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        listingName.font = UIFont(name: "Fredoka-Regular", size: 16)
         listingName.textColor = .black
         return listingName
     }()
     
     lazy var listingPriceRange: UILabel = {
         let listingMinPrice = UILabel()
-        listingMinPrice.font = UIFont.systemFont(ofSize: 16, weight: .light)
+        listingMinPrice.font = UIFont(name: "Fredoka-Light", size: 16)
         listingMinPrice.textColor = .black
         return listingMinPrice
     }()
@@ -62,7 +62,7 @@ class ListingsCollectionViewCell: UICollectionViewCell {
             listingImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             listingImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             listingImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            listingImage.heightAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.5),
+            listingImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.75),
             
             listingName.topAnchor.constraint(equalTo: listingImage.bottomAnchor, constant: 16),
             listingName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
@@ -71,6 +71,7 @@ class ListingsCollectionViewCell: UICollectionViewCell {
             listingPriceRange.topAnchor.constraint(equalTo: listingName.bottomAnchor, constant: 8),
             listingPriceRange.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             listingPriceRange.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            listingPriceRange.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7)
         ])
     }
     

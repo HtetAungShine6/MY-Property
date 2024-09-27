@@ -58,6 +58,8 @@ class ListingDetailViewController: UIViewController {
             listingDetailView.listingNameLabel.text = listing.listingName
             listingDetailView.descriptionLabel.text = listing.description
             listingDetailView.facilitiesPlaceholderLabel.text = "Facilities"
+            listingDetailView.locationLabel.text = "Location"
+            
             if let facilities = facilities {
                 let facilityTypes = facilities.map { $0.facilityType }.joined(separator: ", ")
                 listingDetailView.facilitiesLabel.text = facilityTypes

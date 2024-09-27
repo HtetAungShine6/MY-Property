@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  MY Property
+
+  Created by Akito Daiki on 27/09/2024.
+  
+*/
+
+"welcome_message" = "Welcome, %@";
+"search_placeholder" = "Search properties";
+"account_cell" = "Account";
+"favorite_cell" = "Favorites";
+"account_info" = "Account Information";
+"name" = "Name";
+"email" = "Email";
+"sign_out" = "Sign Out";

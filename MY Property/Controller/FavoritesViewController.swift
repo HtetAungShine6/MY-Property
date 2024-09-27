@@ -29,8 +29,6 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
         super.viewDidLoad()
         setupNavigationBar()
         setupCollectionView()
-        
-        // Do any additional setup after loading the view.
     }
     
     func setupNavigationBar() {
@@ -58,7 +56,7 @@ class FavoritesViewController: UIViewController, UICollectionViewDataSource, UIC
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 16
         let width = collectionView.frame.width - (padding * 2)
-        let height = collectionView.frame.height / 2.5
+        let height = collectionView.frame.height / 2
         return CGSize(width: width, height: height)
     }
     

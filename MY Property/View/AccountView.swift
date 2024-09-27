@@ -10,7 +10,6 @@ import SDWebImage
 
 class AccountView: UIView {
     
-    // UI Elements
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -19,20 +18,47 @@ class AccountView: UIView {
         return imageView
     }()
     
+    private let accountInfoLabel: UILabel = {
+        let accountInfoLabel = UILabel()
+        accountInfoLabel.font = UIFont(name: "Fredoka-Regular", size: 25)
+        accountInfoLabel.textColor = .black
+        accountInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        return accountInfoLabel
+    }()
+    
     private let nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .black
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        let nameLabel = UILabel()
+        nameLabel.font = UIFont(name: "Fredoka-Regular", size: 18)
+        nameLabel.textColor = .black
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return nameLabel
+    }()
+    
+    private let nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter your name"
+        textField.borderStyle = .roundedRect
+        textField.font = UIFont(name: "Fredoka-Light", size: 16)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     private let emailLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = .gray
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
+        let emailLabel = UILabel()
+        emailLabel.font = UIFont(name: "Fredoka-Regular", size: 18)
+        emailLabel.textColor = .black
+        emailLabel.translatesAutoresizingMaskIntoConstraints = false
+        return emailLabel
+    }()
+    
+    private let emailTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter your email"
+        textField.borderStyle = .roundedRect
+        textField.keyboardType = .emailAddress
+        textField.font = UIFont(name: "Fredoka-Light", size: 16)
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     // Initializer
@@ -52,45 +78,182 @@ class AccountView: UIView {
         
         // Add subviews
         addSubview(profileImageView)
+        addSubview(accountInfoLabel)
         addSubview(nameLabel)
+        addSubview(nameTextField)
         addSubview(emailLabel)
+        addSubview(emailTextField)
         
         // Constraints for profileImageView
         setupConstraints()
         
         // Set circular profile image
-        profileImageView.layer.cornerRadius = 50 // Half of the width/height for circular effect
-        profileImageView.layer.masksToBounds = true // Ensure the image is clipped to the bounds
+        profileImageView.layer.cornerRadius = 50
+        profileImageView.layer.masksToBounds = true
     }
     
-    func setupConstraints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             profileImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            profileImageView.widthAnchor.constraint(equalToConstant: 100),
-            profileImageView.heightAnchor.constraint(equalToConstant: 100),
+            profileImageView.widthAnchor.constraint(equalToConstant: 250),
+            profileImageView.heightAnchor.constraint(equalToConstant: 250),
             
-            nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 16),
+            accountInfoLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 16),
+            accountInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            accountInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
+            nameLabel.topAnchor.constraint(equalTo: accountInfoLabel.bottomAnchor, constant: 16),
             nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             
-            emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 16),
+            nameTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            nameTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            nameTextField.heightAnchor.constraint(equalToConstant: 40),
+            
+            emailLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 16),
             emailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             emailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
+            emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 16),
+            emailTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            emailTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            emailTextField.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
     
     // Function to configure the view with user data
-    func configure(with profileImageURL: String?, name: String, email: String) {
-        // Set the name and email in the desired format
-        nameLabel.text = "Name - \(name)"
-        emailLabel.text = "Email - \(email)"
+    func configure(with profileImageURL: String?, name: String?, email: String?) {
+        
+        accountInfoLabel.text = NSLocalizedString("account_info", comment: "Account Information")
+        nameLabel.text = NSLocalizedString("name", comment: "Name")
+        emailLabel.text = NSLocalizedString("email", comment: "Email")
+        
+        // Set the name and email if available
+        nameTextField.text = name
+        emailTextField.text = email
         
         // Load the profile image using SDWebImage
         if let imageURL = profileImageURL, let url = URL(string: imageURL) {
             profileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder_image"))
         } else {
-            profileImageView.image = UIImage(named: "placeholder_image") // Fallback image
+            profileImageView.image = UIImage(named: "placeholder_image")
         }
     }
+    
+    // Function to retrieve input data
+    func getFormData() -> (name: String?, email: String?) {
+        let name = nameTextField.text
+        let email = emailTextField.text
+        return (name, email)
+    }
 }
+
+
+
+//import UIKit
+//import SDWebImage
+//
+//class AccountView: UIView {
+//    
+//    // UI Elements
+//    private let profileImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.contentMode = .scaleAspectFill
+//        imageView.clipsToBounds = true
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        return imageView
+//    }()
+//    
+//    private let accountInfoLabel: UILabel = {
+//        let accountInfoLabel = UILabel()
+//        accountInfoLabel.font = UIFont(name: "Fredoka-Regular", size: 25)
+//        accountInfoLabel.textColor = .black
+//        accountInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+//        return accountInfoLabel
+//    }()
+//    
+//    private let nameLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont(name: "Fredoka-Light", size: 16)
+//        label.textColor = .black
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+//    
+//    private let emailLabel: UILabel = {
+//        let label = UILabel()
+//        label.font = UIFont(name: "Fredoka-Light", size: 16)
+//        label.textColor = .black
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        return label
+//    }()
+//    
+//    // Initializer
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        setupView()
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        super.init(coder: coder)
+//        setupView()
+//    }
+//    
+//    // Setup UI
+//    private func setupView() {
+//        backgroundColor = .white
+//        
+//        // Add subviews
+//        addSubview(profileImageView)
+//        addSubview(accountInfoLabel)
+//        addSubview(nameLabel)
+//        addSubview(emailLabel)
+//        
+//        // Constraints for profileImageView
+//        setupConstraints()
+//        
+//        // Set circular profile image
+//        profileImageView.layer.cornerRadius = 50
+//        profileImageView.layer.masksToBounds = true
+//    }
+//    
+//    func setupConstraints() {
+//        NSLayoutConstraint.activate([
+//            profileImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
+//            profileImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            profileImageView.widthAnchor.constraint(equalToConstant: 250),
+//            profileImageView.heightAnchor.constraint(equalToConstant: 250),
+//            
+//            accountInfoLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 16),
+//            accountInfoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//            accountInfoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+//            
+//            nameLabel.topAnchor.constraint(equalTo: accountInfoLabel.bottomAnchor, constant: 16),
+//            nameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+//            
+//            emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+//            emailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+//            emailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+//        ])
+//    }
+//    
+//    // Function to configure the view with user data
+//    func configure(with profileImageURL: String?, name: String, email: String) {
+//        
+//        accountInfoLabel.text = "Account Informations"
+//        
+//        // Set the name and email in the desired format
+//        nameLabel.text = "Name   -   \(name)"
+//        emailLabel.text = "Email    -   \(email)"
+//
+//        // Load the profile image using SDWebImage
+//        if let imageURL = profileImageURL, let url = URL(string: imageURL) {
+//            profileImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder_image"))
+//        } else {
+//            profileImageView.image = UIImage(named: "placeholder_image") // Fallback image
+//        }
+//    }
+//}

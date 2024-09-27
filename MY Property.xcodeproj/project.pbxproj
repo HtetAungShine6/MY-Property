@@ -33,6 +33,13 @@
 		B317B9AC2C7C2038001836EB /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B317B9AB2C7C2038001836EB /* LoginScreen.swift */; };
 		B325EE7C2CA5FD360092215E /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325EE7B2CA5FD360092215E /* AccountView.swift */; };
 		B325EE7E2CA608EC0092215E /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B325EE7D2CA608EC0092215E /* LanguageView.swift */; };
+		B325EE812CA6A74B0092215E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B325EE7F2CA6A74B0092215E /* Localizable.strings */; };
+		B325EE892CA6BF300092215E /* Fredoka-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B325EE882CA6BF300092215E /* Fredoka-Light.ttf */; };
+		B325EE8B2CA6BF5E0092215E /* Fredoka-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B325EE8A2CA6BF5E0092215E /* Fredoka-Regular.ttf */; };
+		B325EE8D2CA6D5AB0092215E /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B325EE8C2CA6D5AB0092215E /* Poppins-Light.ttf */; };
+		B325EE8F2CA6D5D20092215E /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B325EE8E2CA6D5D20092215E /* Poppins-Medium.ttf */; };
+		B325EE912CA6D5D90092215E /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B325EE902CA6D5D90092215E /* Poppins-Regular.ttf */; };
+		B325EE932CA6D7AB0092215E /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B325EE922CA6D7AB0092215E /* Poppins-Bold.ttf */; };
 		B3623DF02CA4ABFE003AE477 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B3623DEF2CA4ABFE003AE477 /* FirebaseFirestore */; };
 		B3623DF22CA4AC19003AE477 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B3623DF12CA4AC19003AE477 /* FirebaseStorage */; };
 		B3623DF62CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3623DF52CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift */; };
@@ -78,6 +85,15 @@
 		B317B9AB2C7C2038001836EB /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		B325EE7B2CA5FD360092215E /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		B325EE7D2CA608EC0092215E /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
+		B325EE802CA6A74B0092215E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B325EE822CA6A7700092215E /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B325EE832CA6A7A70092215E /* my-MM */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "my-MM"; path = "my-MM.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		B325EE882CA6BF300092215E /* Fredoka-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Light.ttf"; sourceTree = "<group>"; };
+		B325EE8A2CA6BF5E0092215E /* Fredoka-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Regular.ttf"; sourceTree = "<group>"; };
+		B325EE8C2CA6D5AB0092215E /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		B325EE8E2CA6D5D20092215E /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		B325EE902CA6D5D90092215E /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		B325EE922CA6D7AB0092215E /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		B3623DF52CA4ADF5003AE477 /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		B3623DF92CA4B01D003AE477 /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		B3623DFB2CA4BD43003AE477 /* FavoriteListing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListing.swift; sourceTree = "<group>"; };
@@ -126,6 +142,7 @@
 		B30D66EF2C73C5860053144B = {
 			isa = PBXGroup;
 			children = (
+				B325EE7F2CA6A74B0092215E /* Localizable.strings */,
 				B30D66FA2C73C5860053144B /* MY Property */,
 				B30D66F92C73C5860053144B /* Products */,
 				B317B9A02C7A2EA8001836EB /* Frameworks */,
@@ -144,6 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				B317B99B2C7A26C3001836EB /* GoogleService-Info.plist */,
+				B30D67092C73C5890053144B /* Info.plist */,
+				B325EE872CA6BF050092215E /* Fonts */,
 				B3D46F862C80E6B600F44F6F /* Helper */,
 				B31525402C80912200F6FBFF /* Cell */,
 				B317B9A62C7B9232001836EB /* Utility */,
@@ -157,7 +176,6 @@
 				B30D67012C73C5860053144B /* Main.storyboard */,
 				B30D67042C73C5890053144B /* Assets.xcassets */,
 				B30D67062C73C5890053144B /* LaunchScreen.storyboard */,
-				B30D67092C73C5890053144B /* Info.plist */,
 			);
 			path = "MY Property";
 			sourceTree = "<group>";
@@ -254,6 +272,19 @@
 			path = Utility;
 			sourceTree = "<group>";
 		};
+		B325EE872CA6BF050092215E /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B325EE922CA6D7AB0092215E /* Poppins-Bold.ttf */,
+				B325EE902CA6D5D90092215E /* Poppins-Regular.ttf */,
+				B325EE8E2CA6D5D20092215E /* Poppins-Medium.ttf */,
+				B325EE8C2CA6D5AB0092215E /* Poppins-Light.ttf */,
+				B325EE8A2CA6BF5E0092215E /* Fredoka-Regular.ttf */,
+				B325EE882CA6BF300092215E /* Fredoka-Light.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		B37239622C74EFBD00EE8241 /* NetworkUseCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +359,8 @@
 			knownRegions = (
 				en,
 				Base,
+				th,
+				"my-MM",
 			);
 			mainGroup = B30D66EF2C73C5860053144B;
 			packageReferences = (
@@ -351,10 +384,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B325EE812CA6A74B0092215E /* Localizable.strings in Resources */,
 				B30D67082C73C5890053144B /* LaunchScreen.storyboard in Resources */,
 				B317B99C2C7A26C3001836EB /* GoogleService-Info.plist in Resources */,
+				B325EE8D2CA6D5AB0092215E /* Poppins-Light.ttf in Resources */,
 				B30D67052C73C5890053144B /* Assets.xcassets in Resources */,
+				B325EE892CA6BF300092215E /* Fredoka-Light.ttf in Resources */,
+				B325EE8F2CA6D5D20092215E /* Poppins-Medium.ttf in Resources */,
+				B325EE932CA6D7AB0092215E /* Poppins-Bold.ttf in Resources */,
 				B30D67032C73C5860053144B /* Main.storyboard in Resources */,
+				B325EE8B2CA6BF5E0092215E /* Fredoka-Regular.ttf in Resources */,
+				B325EE912CA6D5D90092215E /* Poppins-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +459,16 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		B325EE7F2CA6A74B0092215E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B325EE802CA6A74B0092215E /* en */,
+				B325EE822CA6A7700092215E /* th */,
+				B325EE832CA6A7A70092215E /* my-MM */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -427,6 +477,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -490,6 +541,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

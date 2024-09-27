@@ -9,95 +9,115 @@ import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    private let googleService = GoogleService()
+    
     let signOutButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Sign Out", for: .normal)
+        button.setTitle(NSLocalizedString("sign_out", comment: ""), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .red
         button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont(name: "Fredoka-Regular", size: 16)
         return button
     }()
     
-    let tableData = ["Accounts", "Favorites", "Language"]
+    let tableData: [String] = {
+        return [
+            NSLocalizedString("account_cell", comment: "Account"),
+            NSLocalizedString("favorite_cell", comment: "Favorites")
+        ]
+    }()
     
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = tableData[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
-        case 0:
-            let accountVC = AccountViewController()
-            navigationController?.pushViewController(accountVC, animated: true)
-            
-        case 1:
-            let favoritesVC = FavoritesViewController()
-            navigationController?.pushViewController(favoritesVC, animated: true)
-            
-        case 2:
-            let languageVC = LanguageViewController()
-            navigationController?.pushViewController(languageVC, animated: true)
-            
-            
-        default:
-            break
-        }
-    }
+    private let tableView = UITableView(frame: .zero, style: .plain)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        let tableView = UITableView(frame: view.bounds, style: .plain)
+        setupNavigationTitle()
+        setupTableView()
+        setupSignOutButton()
+        setupLayout()
+    }
+    
+    func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-        view.addSubview(tableView)
-        setupSignOutButton()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func setupNavigationTitle() {
+        self.title = "Settings"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont(name: "Fredoka-Regular", size: 34)!,
+            .foregroundColor: UIColor.black
+        ]
+        navigationController?.navigationBar.largeTitleTextAttributes = attributes
     }
     
     func setupSignOutButton() {
-        // Add the button to the view
-        view.addSubview(signOutButton)
-        
-        // Set button constraints or frame
         signOutButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            signOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            signOutButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            signOutButton.widthAnchor.constraint(equalToConstant: 100),
-            signOutButton.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        // Add action for sign-out
         signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
     }
     
-    @objc func signOut() {
-//        // Call the sign out function from GoogleService
-        let googleService = GoogleService()
-        googleService.printKeychainData()
-//        
-//        // Optionally, navigate to the login screen or show an alert
-//        let alert = UIAlertController(title: "Signed Out", message: "You have been signed out successfully.", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
-//            // Navigate back to login or main screen if necessary
-//            // e.g., self.navigationController?.popToRootViewController(animated: true)
-//        })
-//        self.present(alert, animated: true)
+    func setupLayout() {
+        // Add both the tableView and the signOutButton to the view
+        view.addSubview(tableView)
+        view.addSubview(signOutButton)
         
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: signOutButton.topAnchor, constant: -16),
+            
+            signOutButton.topAnchor.constraint(equalTo: tableView.bottomAnchor, constant: 20),
+            signOutButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            signOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            signOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            signOutButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
     }
     
+    @objc func signOut() {
+        let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
+        
+        let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+            self.googleService.signOutWithGoogle()
+        }
+        
+        let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
     
+    // MARK: - UITableViewDataSource and UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = tableData[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "Fredoka-Light", size: 16)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch indexPath.row {
+        case 0:
+            let accountVC = AccountViewController()
+            navigationController?.pushViewController(accountVC, animated: true)
+        case 1:
+            let favoritesVC = FavoritesViewController()
+            navigationController?.pushViewController(favoritesVC, animated: true)
+        default:
+            break
+        }
+    }
 }
-
-

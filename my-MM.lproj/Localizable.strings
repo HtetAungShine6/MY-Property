@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  MY Property
+
+  Created by Akito Daiki on 27/09/2024.
+  
+*/
+
+"welcome_message" = "ကြိုဆိုပါသည်, %@";
+"search_placeholder" = "ပိုင်ဆိုင်မှုများကိုရှာဖွေရန်";
+"account_cell" = "အကောင့်";
+"favorite_cell" = "အကြိုက်များ";
+"account_info" = "အကောင့် အချက်အလက်";
+"name" = "နာမည်";
+"email" = "အီးမေးလ်";
+"sign_out" = "ထွက်ရန်";

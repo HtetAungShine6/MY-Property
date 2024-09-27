@@ -52,10 +52,15 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        let userName = UILabel()
-        userName.text = "Welcome, \(FirebaseManager.shared.auth.currentUser?.displayName ?? "")"
-        userName.font = UIFont.systemFont(ofSize: 18)
-        userName.textColor = .black
+        // Get the user's display name (fall back to empty string if nil)
+        let userName = FirebaseManager.shared.auth.currentUser?.displayName ?? ""
+        // Use NSLocalizedString to get the localized welcome message
+        let welcomeMessage = String(format: NSLocalizedString("welcome_message", comment: "Welcome message with user's name"), userName)
+        
+        let userNameLabel = UILabel()
+        userNameLabel.text = welcomeMessage
+        userNameLabel.font = UIFont(name: "Fredoka-Light", size: 18)
+        userNameLabel.textColor = .black
         
         let profileImageView = UIImageView()
         profileImageView.contentMode = .scaleAspectFill
@@ -81,21 +86,14 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
             profileImageView.image = UIImage(named: "placeholder_image")
         }
         
-        let profileStackView = UIStackView(arrangedSubviews: [profileImageView, userName])
+        let profileStackView = UIStackView(arrangedSubviews: [profileImageView, userNameLabel])
         profileStackView.axis = .horizontal
         profileStackView.spacing = 8
         profileStackView.alignment = .center
         
-        let signOutButton = UIButton(type: .system)
-        signOutButton.setImage(UIImage(systemName: "door.right.hand.open"), for: .normal)
-        signOutButton.tintColor = UIColor.red
-        signOutButton.addTarget(self, action: #selector(signOutButtonTapped), for: .touchUpInside)
-        
-        let signOutBarItem = UIBarButtonItem(customView: signOutButton)
         let profileBarItem = UIBarButtonItem(customView: profileStackView)
         
         navigationItem.leftBarButtonItem = profileBarItem
-        navigationItem.rightBarButtonItem = signOutBarItem
     }
     
     // MARK: - CollectionView Setup
@@ -119,7 +117,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 16
         let width = collectionView.frame.width - (padding * 2)
-        let height = collectionView.frame.height / 2.9
+        let height = collectionView.frame.height / 2.5
         return CGSize(width: width, height: height)
     }
     
@@ -166,22 +164,6 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         searchBar.text = ""
         filteredProperties.removeAll()
         homeView.propertyCollectionView.reloadData()
-    }
-    
-
-    // MARK: - Button Actions
-    @objc private func signOutButtonTapped() {
-        let alertController = UIAlertController(title: "Sign Out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
-        
-        let confirmAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-            self.googleService.signOutWithGoogle()
-            self.googleService.printKeychainData()
-        }
-        
-        let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-        alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true, completion: nil)
     }
 }
 

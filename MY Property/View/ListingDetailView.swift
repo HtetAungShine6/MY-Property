@@ -25,30 +25,39 @@ class ListingDetailView: UIView {
     
     lazy var listingNameLabel: UILabel = {
         let listingNameLabel = UILabel()
-        listingNameLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
+        listingNameLabel.font = UIFont(name: "Fredoka-Regular", size: 20)
         listingNameLabel.textColor = .black
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.lineBreakMode = .byWordWrapping
         return listingNameLabel
     }()
     
     lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.font = UIFont.systemFont(ofSize: 16)
+        descriptionLabel.font = UIFont(name: "Fredoka-Light", size: 16)
         descriptionLabel.textColor = .black
         return descriptionLabel
     }()
     
     lazy var facilitiesPlaceholderLabel: UILabel = {
         let facilitiesPlaceholderLabel = UILabel()
-        facilitiesPlaceholderLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        facilitiesPlaceholderLabel.font = UIFont(name: "Fredoka-Regular", size: 20)
         facilitiesPlaceholderLabel.textColor = .black
         return facilitiesPlaceholderLabel
     }()
     
     lazy var facilitiesLabel: UILabel = {
         let facilitiesLabel = UILabel()
-        facilitiesLabel.font = UIFont.systemFont(ofSize: 16)
+        facilitiesLabel.font = UIFont(name: "Fredoka-Light", size: 16)
         facilitiesLabel.textColor = .black
         return facilitiesLabel
+    }()
+    
+    lazy var locationLabel: UILabel = {
+        let locationLabel = UILabel()
+        locationLabel.font = UIFont(name: "Fredoka-Regular", size: 20)
+        locationLabel.textColor = .black
+        return locationLabel
     }()
     
     lazy var mapView: MKMapView = {
@@ -90,7 +99,16 @@ class ListingDetailView: UIView {
         contentView.addSubview(facilitiesPlaceholderLabel)
         contentView.addSubview(facilitiesLabel)
         contentView.addSubview(favoriteButton)
+        contentView.addSubview(locationLabel)
         contentView.addSubview(mapView)
+        
+        // Set corner radius for listingDetailImage
+        listingDetailImage.layer.cornerRadius = 10
+        listingDetailImage.clipsToBounds = true
+        
+        // Set corner radius for mapView
+        mapView.layer.cornerRadius = 10
+        mapView.clipsToBounds = true
         
         // Setup constraints
         setupConstraints()
@@ -105,6 +123,7 @@ class ListingDetailView: UIView {
         facilitiesPlaceholderLabel.translatesAutoresizingMaskIntoConstraints = false
         facilitiesLabel.translatesAutoresizingMaskIntoConstraints = false
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
         mapView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -123,28 +142,28 @@ class ListingDetailView: UIView {
             
             // Constraints for listingDetailImage
             listingDetailImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            listingDetailImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            listingDetailImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            listingDetailImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            listingDetailImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             listingDetailImage.heightAnchor.constraint(equalToConstant: 200),
             
             // Constraints for favoriteButton (placed below image on the right side)
-            favoriteButton.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 10),
+            favoriteButton.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 15),
             favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             favoriteButton.widthAnchor.constraint(equalToConstant: 40),
             favoriteButton.heightAnchor.constraint(equalToConstant: 40),
             
             // Constraints for listingNameLabel
-            listingNameLabel.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 10),
+            listingNameLabel.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 15),
             listingNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             listingNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             // Constraints for descriptionLabel
-            descriptionLabel.topAnchor.constraint(equalTo: listingNameLabel.bottomAnchor, constant: 10),
+            descriptionLabel.topAnchor.constraint(equalTo: listingNameLabel.bottomAnchor, constant: 15),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             // Constraints for facilities
-            facilitiesPlaceholderLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 10),
+            facilitiesPlaceholderLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             facilitiesPlaceholderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             facilitiesPlaceholderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
@@ -152,10 +171,15 @@ class ListingDetailView: UIView {
             facilitiesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             facilitiesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
+            // Constraints for location label
+            locationLabel.topAnchor.constraint(equalTo: facilitiesLabel.bottomAnchor, constant: 20),
+            locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            locationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
             // Constraints for mapView
-            mapView.topAnchor.constraint(equalTo: facilitiesLabel.bottomAnchor, constant: 10),
-            mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            mapView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 10),
+            mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             mapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             mapView.heightAnchor.constraint(equalToConstant: 300)
         ])

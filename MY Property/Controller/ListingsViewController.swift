@@ -20,9 +20,9 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
     var propertyLat: Double?
     var propertyLong: Double?
     var facilities: [Property.Facility]?
-
+    
     private var isSearching = false
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupCollectionView()
@@ -38,7 +38,7 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
         setupCollectionView()
         setupSearchBar()
         getListings(propertyId: propertyId)
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -46,6 +46,10 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
+        appearance.titleTextAttributes = [
+            NSAttributedString.Key.font: UIFont(name: "Fredoka-Light", size: 20) ?? UIFont.systemFont(ofSize: 20),
+            NSAttributedString.Key.foregroundColor: UIColor.black 
+        ]
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
@@ -67,7 +71,7 @@ class ListingsViewController: UIViewController, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let padding: CGFloat = 16
         let width = collectionView.frame.width - (padding * 2)
-        let height = collectionView.frame.height / 2.5
+        let height = collectionView.frame.height / 2
         return CGSize(width: width, height: height)
     }
     
