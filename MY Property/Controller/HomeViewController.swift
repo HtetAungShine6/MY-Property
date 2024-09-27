@@ -55,10 +55,10 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Get the user's display name (fall back to empty string if nil)
         let userName = FirebaseManager.shared.auth.currentUser?.displayName ?? ""
         // Use NSLocalizedString to get the localized welcome message
-        let welcomeMessage = String(format: NSLocalizedString("welcome_message", comment: "Welcome message with user's name"), userName)
+        let welcomeMessage = String(format: NSLocalizedString("welcome_message", comment: "Welcome message with user's name"))
         
         let userNameLabel = UILabel()
-        userNameLabel.text = welcomeMessage
+        userNameLabel.text = "\(welcomeMessage), \(userName)"
         userNameLabel.font = UIFont(name: "Fredoka-Light", size: 18)
         userNameLabel.textColor = .black
         
@@ -157,6 +157,9 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         filteredProperties = searchText.isEmpty ? properties : properties.filter { $0.title.range(of: searchText, options: .caseInsensitive) != nil }
         isSearching = !filteredProperties.isEmpty
         homeView.propertyCollectionView.reloadData()
+        if searchText.isEmpty {
+            searchBar.resignFirstResponder()
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -164,6 +167,7 @@ class HomeViewController: UIViewController, UICollectionViewDataSource, UICollec
         searchBar.text = ""
         filteredProperties.removeAll()
         homeView.propertyCollectionView.reloadData()
+        searchBar.resignFirstResponder() 
     }
 }
 

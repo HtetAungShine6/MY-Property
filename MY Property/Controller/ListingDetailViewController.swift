@@ -113,7 +113,8 @@ class ListingDetailViewController: UIViewController {
                 print("Error saving favorite: \(error)")
             } else {
                 self?.shouldSetFavorite = true
-                self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                self?.updateFavoriteButton()
+//                self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                 print("Favorite saved successfully!")
             }
         }
@@ -127,10 +128,17 @@ class ListingDetailViewController: UIViewController {
                 print("Error removing favorite: \(error)")
             } else {
                 self?.shouldSetFavorite = false
-                self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+                self?.updateFavoriteButton()
+//                self?.listingDetailView.favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
                 print("Favorite removed successfully!")
             }
         }
+    }
+    
+    private func updateFavoriteButton() {
+        // Update the button appearance based on the `shouldSetFavorite` state
+        let imageName = shouldSetFavorite ? "heart.fill" : "heart"
+        listingDetailView.favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
     
     private func checkIfFavorite() {

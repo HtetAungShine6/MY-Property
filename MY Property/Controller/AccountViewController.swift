@@ -37,37 +37,3 @@ class AccountViewController: UIViewController {
         print("Email: \(formData.email ?? "")")
     }
 }
-
-
-//import UIKit
-//import FirebaseAuth
-//
-//class AccountViewController: UIViewController {
-//
-//    let accountView = AccountView()
-//
-//    override func loadView() {
-//        self.view = accountView
-//    }
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        // Set the background color
-//        view.backgroundColor = .white
-//        
-//        // Fetch user data from Firebase
-//        if let user = Auth.auth().currentUser {
-//            let profileImageURL = user.photoURL?.absoluteString 
-//            let name = user.displayName ?? "No Username found"
-//            let email = user.email ?? "No Email found"
-//            
-//            // Configure the account view with user data
-//            accountView.configure(with: profileImageURL, name: name, email: email)
-//        } else {
-//            // Handle the case where the user is not authenticated
-//            accountView.configure(with: nil, name: "No User", email: "No Email")
-//        }
-//        
-//    }
-//}

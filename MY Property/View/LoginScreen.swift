@@ -14,12 +14,32 @@ class LoginScreen: UIView {
     private let sanityService = SanityService()
     private let googleService = GoogleService()
     
+    private let logoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        if let logoImage = UIImage(named: "my-logo") {
+            imageView.image = logoImage
+        }
+        return imageView
+    }()
+    
     private let signInButton: UIButton = {
         let signInButton = UIButton(type: .system)
         if let backgroundImage = UIImage(named: "continueWithGoogle") {
             signInButton.setBackgroundImage(backgroundImage, for: .normal)
         }
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
         return signInButton
+    }()
+    
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .center
+        stackView.spacing = 20
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     override init(frame: CGRect) {
@@ -35,20 +55,30 @@ class LoginScreen: UIView {
         signInButton.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
     }
     
-    private func setupUI(){
+    private func setupUI() {
         backgroundColor = .white
-        addSubview(signInButton)
+        
+        // Add logo and sign-in button to the stack view
+        stackView.addArrangedSubview(logoImageView)
+        stackView.addArrangedSubview(signInButton)
+        
+        // Add stack view to the main view
+        addSubview(stackView)
         
         setupConstraints()
     }
     
     private func setupConstraints() {
-        
-        signInButton.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
-            signInButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            signInButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            // Center the stack view in the middle of the screen
+            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            // Set logo image size
+            logoImageView.widthAnchor.constraint(equalToConstant: 200),
+            logoImageView.heightAnchor.constraint(equalToConstant: 200),
+            
+            // Set sign-in button size
             signInButton.widthAnchor.constraint(equalToConstant: 250),
             signInButton.heightAnchor.constraint(equalToConstant: 50)
         ])

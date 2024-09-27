@@ -6,7 +6,7 @@
   
 */
 
-"welcome_message" = "ကြိုဆိုပါသည်, %@";
+"welcome_message" = "ကြိုဆိုပါသည်";
 "search_placeholder" = "ပိုင်ဆိုင်မှုများကိုရှာဖွေရန်";
 "account_cell" = "အကောင့်";
 "favorite_cell" = "အကြိုက်များ";
@@ -14,3 +14,11 @@
 "name" = "နာမည်";
 "email" = "အီးမေးလ်";
 "sign_out" = "ထွက်ရန်";
+"features_available_now" = "ယခုရရှိနိုင်သော အင်္ကျီများ";
+"upcoming_features" = "မာတီဖွင့်သော အင်္ကျီများ";
+"recent" = "နောက်ဆုံး";
+"appearance" = "အထွေထွေ";
+"restricted" = "ကန့်သတ်ထားသည်";
+"notifications" = "သတိပေးချက်များ";
+"report_a_problem" = "ပြဿနာတစ်ခုကို တင်ပြပါ";
+"settings" = "ဆက်တင်များ";

@@ -6,7 +6,7 @@
   
 */
 
-"welcome_message" = "Welcome, %@";
+"welcome_message" = "Welcome";
 "search_placeholder" = "Search properties";
 "account_cell" = "Account";
 "favorite_cell" = "Favorites";
@@ -14,3 +14,11 @@
 "name" = "Name";
 "email" = "Email";
 "sign_out" = "Sign Out";
+"features_available_now" = "Features Available Now";
+"upcoming_features" = "Upcoming Features";
+"recent" = "Recent";
+"appearance" = "Appearance";
+"restricted" = "Restricted";
+"notifications" = "Notifications";
+"report_a_problem" = "Report a problem";
+"settings" = "Settings";

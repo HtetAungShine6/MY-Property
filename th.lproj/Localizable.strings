@@ -6,7 +6,7 @@
   
 */
 
-"welcome_message" = "ยินดีต้อนรับ, %@";
+"welcome_message" = "ยินดีต้อนรับ";
 "search_placeholder" = "ค้นหาอสังหาริมทรัพย์";
 "account_cell" = "บัญชี";
 "favorite_cell" = "รายการโปรด";
@@ -14,3 +14,11 @@
 "name" = "ชื่อ";
 "email" = "อีเมล";
 "sign_out" = "ออกจากระบบ";
+"features_available_now" = "ฟีเจอร์ที่พร้อมใช้งาน";
+"upcoming_features" = "ฟีเจอร์ที่กำลังจะมา";
+"recent" = "ล่าสุด";
+"appearance" = "รูปลักษณ์";
+"restricted" = "ถูกจำกัด";
+"notifications" = "การแจ้งเตือน";
+"report_a_problem" = "แจ้งปัญหา";
+"settings" = "การตั้งค่า";
