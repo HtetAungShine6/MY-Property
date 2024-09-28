@@ -162,6 +162,7 @@
 			children = (
 				B317B99B2C7A26C3001836EB /* GoogleService-Info.plist */,
 				B30D67092C73C5890053144B /* Info.plist */,
+				B325EE942CA7A8EB0092215E /* ViewModel */,
 				B325EE872CA6BF050092215E /* Fonts */,
 				B3D46F862C80E6B600F44F6F /* Helper */,
 				B31525402C80912200F6FBFF /* Cell */,
@@ -242,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				B30D67302C73C90C0053144B /* GoogleService.swift */,
-				B372395F2C74D65F00EE8241 /* SanityService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -283,6 +283,22 @@
 				B325EE882CA6BF300092215E /* Fredoka-Light.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B325EE942CA7A8EB0092215E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B325EE952CA7A8FF0092215E /* SanityServiceViewModel */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B325EE952CA7A8FF0092215E /* SanityServiceViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B372395F2C74D65F00EE8241 /* SanityService.swift */,
+			);
+			path = SanityServiceViewModel;
 			sourceTree = "<group>";
 		};
 		B37239622C74EFBD00EE8241 /* NetworkUseCases */ = {
