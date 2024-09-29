@@ -192,18 +192,18 @@ class ListingDetailView: UIView {
             listingDetailImage.heightAnchor.constraint(equalToConstant: 200),
             
             // Constraints for favoriteButton (placed below image on the right side)
-            favoriteButton.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 15),
+            favoriteButton.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 13),
             favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             favoriteButton.widthAnchor.constraint(equalToConstant: 40),
             favoriteButton.heightAnchor.constraint(equalToConstant: 40),
             
             // Constraints for listingNameLabel
-            listingNameLabel.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 15),
+            listingNameLabel.topAnchor.constraint(equalTo: listingDetailImage.bottomAnchor, constant: 20),
             listingNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             listingNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             // Constraints for descriptionLabel
-            descriptionLabel.topAnchor.constraint(equalTo: listingNameLabel.bottomAnchor, constant: 15),
+            descriptionLabel.topAnchor.constraint(equalTo: listingNameLabel.bottomAnchor, constant: 20),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
@@ -212,7 +212,7 @@ class ListingDetailView: UIView {
             facilitiesPlaceholderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             facilitiesPlaceholderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            facilitiesLabel.topAnchor.constraint(equalTo: facilitiesPlaceholderLabel.bottomAnchor, constant: 10),
+            facilitiesLabel.topAnchor.constraint(equalTo: facilitiesPlaceholderLabel.bottomAnchor, constant: 20),
             facilitiesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             facilitiesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
@@ -221,7 +221,7 @@ class ListingDetailView: UIView {
             furniturePlaceholderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             furniturePlaceholderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            furnitureLabel.topAnchor.constraint(equalTo: furniturePlaceholderLabel.bottomAnchor, constant: 10),
+            furnitureLabel.topAnchor.constraint(equalTo: furniturePlaceholderLabel.bottomAnchor, constant: 20),
             furnitureLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             furnitureLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
@@ -235,19 +235,19 @@ class ListingDetailView: UIView {
             contractPlaceholderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             contractPlaceholderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
-            contractLabel.topAnchor.constraint(equalTo: contractPlaceholderLabel.bottomAnchor, constant: 10),
+            contractLabel.topAnchor.constraint(equalTo: contractPlaceholderLabel.bottomAnchor, constant: 20),
             contractLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             contractLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             // Constraints for location label
-            locationLabel.topAnchor.constraint(equalTo: contractLabel.bottomAnchor, constant: 20),
+            locationLabel.topAnchor.constraint(equalTo: contractLabel.bottomAnchor, constant: 50),
             locationLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             locationLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
             // Constraints for mapView
             mapView.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 10),
             mapView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            mapView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -32),
             mapView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             mapView.heightAnchor.constraint(equalToConstant: 300)
         ])
